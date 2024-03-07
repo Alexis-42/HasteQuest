@@ -1,6 +1,6 @@
-package com.jeu.hastequest.controller;
+package com.jeu.hastequest.controller.games;
 
-import com.jeu.hastequest.View;
+import com.jeu.hastequest.view.View;
 
 abstract public class Game{
     public String gameName;

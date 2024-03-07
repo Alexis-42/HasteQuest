@@ -1,6 +1,7 @@
 package com.jeu.hastequest.controller;
 
-import com.jeu.hastequest.View;
+import com.jeu.hastequest.view.View;
+import com.jeu.hastequest.controller.games.Game;
 
 abstract public class GameMode {
     public View view;

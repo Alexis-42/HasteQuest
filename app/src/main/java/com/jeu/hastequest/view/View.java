@@ -1,4 +1,4 @@
-package com.jeu.hastequest;
+package com.jeu.hastequest.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 

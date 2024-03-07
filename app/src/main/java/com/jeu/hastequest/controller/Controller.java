@@ -1,6 +1,6 @@
 package com.jeu.hastequest.controller;
 
-import com.jeu.hastequest.View;
+import com.jeu.hastequest.view.View;
 import com.jeu.hastequest.model.Model;
 
 public class Controller {
