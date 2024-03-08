@@ -43,4 +43,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="quizz">Quizz</string>
+    <string name="question_ici">Question ICI</string>
+    <string name="rep_a">REP A</string>
+    <string name="rep_b">REP B</string>
+    <string name="rep_d">REP D</string>
+    <string name="rep_c">REP C</string>
 </resources>
