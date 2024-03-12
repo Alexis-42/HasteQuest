@@ -1,8 +1,10 @@
-package com.jeu.hastequest.controller.games;
+package com.jeu.hastequest.model.games;
 
-public class Quizz extends Game{
-    public Quizz() {
-        super(30, "Quizz");
+public class QuizModel extends GameModel {
+    public QuizModel() {
+        super(30,
+                "Quizz",
+                "Trouve la réponse correcte dans un temps impartie");
     }
 
     @Override

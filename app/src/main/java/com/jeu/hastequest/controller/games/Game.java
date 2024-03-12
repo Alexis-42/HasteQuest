@@ -1,14 +1,20 @@
 package com.jeu.hastequest.controller.games;
 
-abstract public class Game{
-    public String gameName;
-    public int maxTime;
-    public int id;
+import android.os.Bundle;
 
-    public Game(int initialMaxTime, String gameName){
-        this.maxTime = initialMaxTime;
-        this.gameName = gameName;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.jeu.hastequest.model.games.GameModel;
+
+abstract public class Game extends AppCompatActivity {
+    GameModel game;
+
+    public Game(GameModel game){
+        this.game = game;
     }
 
-    abstract public int computeMaxTime(int difficulty);
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
 }
