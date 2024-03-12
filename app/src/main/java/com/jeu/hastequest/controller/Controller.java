@@ -1,26 +1,21 @@
 package com.jeu.hastequest.controller;
 
-import com.jeu.hastequest.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.jeu.hastequest.model.Model;
 
-public class Controller {
+public class Controller extends AppCompatActivity {
     private static Controller controller;
-    public View view;
     public Model model;
 
-    private Controller(View vue){
-        this.view = vue;
+    protected Controller(){
         this.model = Model.getModel(this);
     }
 
-    public static Controller getController(View vue){
+    public static Controller getController(){
         if(controller == null){
-            controller = new Controller(vue);
+            controller = new Controller();
         }
-        return controller;
-    }
-
-    public Controller getController(){
         return controller;
     }
 }

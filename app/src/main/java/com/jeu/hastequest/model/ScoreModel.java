@@ -1,10 +1,10 @@
-package com.jeu.hastequest.controller;
+package com.jeu.hastequest.model;
 
-public class Score {
+public class ScoreModel {
     public int score;
     public String userName;
 
-    public Score(int score, String userName){
+    public ScoreModel(int score, String userName){
         this.score = score;
         this.userName = userName;
     }

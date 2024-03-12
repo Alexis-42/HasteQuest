@@ -1,23 +1,25 @@
 package com.jeu.hastequest.controller.gamemode;
 
-import com.jeu.hastequest.controller.Score;
-import com.jeu.hastequest.controller.games.Game;
-import com.jeu.hastequest.view.View;
-import com.jeu.hastequest.view.gamemode.FreePlayModeView;
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ImageButton;
+
+import com.jeu.hastequest.MainActivity;
+import com.jeu.hastequest.R;
 
 public class FreePlayMode extends GameMode{
-    /**
-     * public SurvivalMode(){
-     * scores = récupSaveScore();
-     * games = récupJeux()
-     * super(ViewFreePlay.getView(), scores, games);
-     * }
-     *
-     * @param view
-     * @param scores
-     * @param games
-     **/
-    public FreePlayMode(View view, Score[] scores, Game[] games) {
-        super(new FreePlayModeView(), scores, games);
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.free_play);
+
+        ImageButton homeButton = findViewById(R.id.boutonHome);
+
+        android.view.View.OnClickListener listener = v -> {
+            if(v.getId() == R.id.boutonHome)
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        };
+
+        homeButton.setOnClickListener(listener);
     }
 }

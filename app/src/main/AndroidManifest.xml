@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
         android:allowBackup="true"
@@ -12,10 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HasteQuest">
         <activity
-            android:name=".view.gamemode.SurvivalModeView"
+            android:name=".controller.gamemode.SurvivalMode"
             android:exported="false" />
         <activity
-            android:name=".view.gamemode.FreePlayModeView"
+            android:name=".controller.gamemode.FreePlayMode"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

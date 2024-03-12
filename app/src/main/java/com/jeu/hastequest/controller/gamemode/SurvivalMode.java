@@ -1,14 +1,13 @@
 package com.jeu.hastequest.controller.gamemode;
 
-import com.jeu.hastequest.controller.Score;
-import com.jeu.hastequest.controller.games.Game;
-import com.jeu.hastequest.view.gamemode.SurvivalModeView;
+import android.os.Bundle;
+
+import com.jeu.hastequest.R;
 
 public class SurvivalMode extends GameMode{
-
-    public SurvivalMode(Score[] scores, Game[] games) {
-        super(new SurvivalModeView(), scores, games);
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_menu);
     }
-
-
 }

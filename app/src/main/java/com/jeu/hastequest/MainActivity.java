@@ -7,8 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jeu.hastequest.view.gamemode.FreePlayModeView;
-import com.jeu.hastequest.view.gamemode.SurvivalModeView;
+import com.jeu.hastequest.controller.gamemode.FreePlayMode;
+import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
 
-        Button fpButton = (Button) findViewById(R.id.boutonJeuLibre);
-        Button sButton = (Button) findViewById(R.id.boutonSurvie);
+        Button fpButton = findViewById(R.id.boutonJeuLibre);
+        Button sButton = findViewById(R.id.boutonSurvie);
         View.OnClickListener listener = v -> {
             if(v.getId() == R.id.boutonJeuLibre)
                 redirectFreePlay();
@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void redirectSurvival(){
-        Intent intent = new Intent(getApplicationContext(), SurvivalModeView.class);
+        Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
         startActivity(intent);
     }
 
     public void redirectFreePlay(){
-        Intent intent = new Intent(getApplicationContext(), FreePlayModeView.class);
+        Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
         startActivity(intent);
     }
 

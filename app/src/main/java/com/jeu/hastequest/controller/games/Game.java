@@ -1,15 +1,11 @@
 package com.jeu.hastequest.controller.games;
 
-import com.jeu.hastequest.view.View;
-
 abstract public class Game{
     public String gameName;
     public int maxTime;
-    public View view;
     public int id;
 
-    public Game(View view,int initialMaxTime, String gameName){
-        this.view = view;
+    public Game(int initialMaxTime, String gameName){
         this.maxTime = initialMaxTime;
         this.gameName = gameName;
     }
