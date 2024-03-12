@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_menu_bg">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/boutonJouer"
+        android:layout_width="360dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/main_menu_button"
+        android:text="@string/jouer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonRegles" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="189dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="627dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo"
+        android:contentDescription="@string/logo_hastequest" />
+
+    <ImageView
+        android:id="@+id/imageJeu"
+        android:layout_width="265dp"
+        android:layout_height="293dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="227dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="287dp"
+        android:contentDescription="@string/image_du_jeu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageButton
+        android:id="@+id/boutonNextJeu"
+        android:layout_width="49dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="347dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="407dp"
+        android:contentDescription="@string/bouton_jeu_suivant"
+        android:rotation="270"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageJeu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <ImageButton
+        android:id="@+id/boutonPreviousJeu"
+        android:layout_width="49dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="347dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="407dp"
+        android:contentDescription="@string/bouton_jeu_precedent"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageJeu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/arrow_down_float" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/boutonRegles"
+        android:layout_width="360dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="17dp"
+        android:background="@drawable/main_menu_button"
+        android:text="@string/r_gles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageJeu" />
+
+    <ImageButton
+        android:id="@+id/boutonHome"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="321dp"
+        android:contentDescription="@string/retour_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

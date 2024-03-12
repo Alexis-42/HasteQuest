@@ -52,4 +52,11 @@
     <string name="todo">TODO</string>
     <string name="jeu_libre">Jeu libre</string>
     <string name="survie">Survie</string>
+    <string name="jouer">Jouer</string>
+    <string name="r_gles">Règles</string>
+    <string name="retour_menu">Retour Menu</string>
+    <string name="bouton_jeu_suivant">Bouton jeu suivant</string>
+    <string name="bouton_jeu_precedent">Bouton jeu precedent</string>
+    <string name="image_du_jeu">Image du jeu</string>
+    <string name="logo_hastequest">Logo hasteQuest</string>
 </resources>
