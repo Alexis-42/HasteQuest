@@ -1,5 +1,6 @@
-package com.jeu.hastequest.controller;
+package com.jeu.hastequest.controller.gamemode;
 
+import com.jeu.hastequest.controller.Score;
 import com.jeu.hastequest.view.View;
 import com.jeu.hastequest.controller.games.Game;
 
@@ -20,5 +21,15 @@ abstract public class GameMode {
         this.scores = scores;
         this.games = games;
         this.difficulty = 0;
+    }
+
+    public View selectGame(int id){
+        for(Game game : games){
+            if(game.id == id){
+                return game.view;
+            }
+        }
+        // si jamais on trouve pas l'id du jeu
+        return this.view;
     }
 }

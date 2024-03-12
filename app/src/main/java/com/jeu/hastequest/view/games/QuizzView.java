@@ -11,8 +11,8 @@ import com.jeu.hastequest.R;
 import com.jeu.hastequest.databinding.FragmentFirstBinding;
 import com.jeu.hastequest.view.View;
 
-public class Quizz extends View {
-    public Quizz(){
+public class QuizzView extends View {
+    public QuizzView(){
         super();
     }
 
@@ -31,14 +31,6 @@ public class Quizz extends View {
 
     public void onViewCreated(@NonNull android.view.View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.buttonFirst.setOnClickListener(new android.view.View.OnClickListener() {
-            @Override
-            public void onClick(android.view.View view) {
-                NavHostFragment.findNavController(Quizz.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
     }
 
     @Override

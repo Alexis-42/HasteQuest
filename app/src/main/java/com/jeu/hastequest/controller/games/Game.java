@@ -6,12 +6,13 @@ abstract public class Game{
     public String gameName;
     public int maxTime;
     public View view;
+    public int id;
 
-    public Game(View view,int initialMaxTime, int difficulty, String gameName){
+    public Game(View view,int initialMaxTime, String gameName){
         this.view = view;
-        this.maxTime = computeMaxTime(initialMaxTime, difficulty);
+        this.maxTime = initialMaxTime;
         this.gameName = gameName;
     }
 
-    abstract public int computeMaxTime(int initialMaxTime, int difficulty);
+    abstract public int computeMaxTime(int difficulty);
 }
