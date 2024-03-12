@@ -1,10 +1,12 @@
 package com.jeu.hastequest.controller.games;
 
+import android.content.Context;
+
 import com.jeu.hastequest.view.games.QuizzView;
 
 public class Quizz extends Game{
-    public Quizz() {
-        super(new QuizzView(), 30, "Quizz");
+    public Quizz(Context context) {
+        super(new QuizzView(context), 30, "Quizz");
     }
 
     @Override

@@ -23,7 +23,7 @@ abstract public class GameMode {
         this.difficulty = 0;
     }
 
-    public View selectGame(int id){
+    public View selectGameView(int id){
         for(Game game : games){
             if(game.id == id){
                 return game.view;

@@ -49,4 +49,7 @@
     <string name="rep_b">REP B</string>
     <string name="rep_d">REP D</string>
     <string name="rep_c">REP C</string>
+    <string name="todo">TODO</string>
+    <string name="jeu_libre">Jeu libre</string>
+    <string name="survie">Survie</string>
 </resources>
