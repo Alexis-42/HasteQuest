@@ -21,12 +21,4 @@ public abstract class View extends AppCompatActivity {
     }
     Controller controller;
 
-    public abstract android.view.View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    );
-
-    protected void onDestroyView() {
-
-    }
 }

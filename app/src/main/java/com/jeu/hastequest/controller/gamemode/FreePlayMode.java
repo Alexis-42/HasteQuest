@@ -3,9 +3,9 @@ package com.jeu.hastequest.controller.gamemode;
 import com.jeu.hastequest.controller.Score;
 import com.jeu.hastequest.controller.games.Game;
 import com.jeu.hastequest.view.View;
-import com.jeu.hastequest.view.gamemode.FreePlayView;
+import com.jeu.hastequest.view.gamemode.FreePlayModeView;
 
-public class FreePlay extends GameMode{
+public class FreePlayMode extends GameMode{
     /**
      * public SurvivalMode(){
      * scores = récupSaveScore();
@@ -17,7 +17,7 @@ public class FreePlay extends GameMode{
      * @param scores
      * @param games
      **/
-    public FreePlay(View view, Score[] scores, Game[] games) {
-        super(new FreePlayView(), scores, games);
+    public FreePlayMode(View view, Score[] scores, Game[] games) {
+        super(new FreePlayModeView(), scores, games);
     }
 }

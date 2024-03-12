@@ -11,18 +11,4 @@ public class QuizzView extends View {
     public QuizzView(){
         super();
     }
-
-    @Override
-    public android.view.View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-        return null;
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
 }

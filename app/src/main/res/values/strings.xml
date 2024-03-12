@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HasteQuest</string>
+    <string name="app_name">Haste Quest</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -59,4 +59,9 @@
     <string name="bouton_jeu_precedent">Bouton jeu precedent</string>
     <string name="image_du_jeu">Image du jeu</string>
     <string name="logo_hastequest">Logo hasteQuest</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_empty">Empty</string>
+    <string name="title_activity_test">Test</string>
 </resources>

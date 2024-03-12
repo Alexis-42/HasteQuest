@@ -5,15 +5,14 @@ import android.os.Bundle;
 import com.jeu.hastequest.R;
 import com.jeu.hastequest.view.View;
 
-public class SurvivalModeView extends View {
-
-    public SurvivalModeView(){
+public class FreePlayModeView extends View {
+    public FreePlayModeView(){
         super();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.free_play);
     }
 }

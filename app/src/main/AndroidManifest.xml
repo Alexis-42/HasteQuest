@@ -6,16 +6,20 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HasteQuest"
-        tools:targetApi="31">
+        android:theme="@style/Theme.HasteQuest">
+        <activity
+            android:name=".view.gamemode.SurvivalModeView"
+            android:exported="false" />
+        <activity
+            android:name=".view.gamemode.FreePlayModeView"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.HasteQuest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
