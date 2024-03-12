@@ -13,13 +13,10 @@ import androidx.fragment.app.Fragment;
 import com.jeu.hastequest.controller.Controller;
 
 
-public abstract class View extends android.view.View {
-    private final Context context;
+public abstract class View extends AppCompatActivity {
 
-
-    protected View(Context context){
-        super(context);
-        this.context = context;
+    protected View(){
+        super();
         controller = Controller.getController(this);
     }
     Controller controller;

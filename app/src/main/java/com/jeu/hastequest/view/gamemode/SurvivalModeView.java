@@ -9,8 +9,8 @@ import com.jeu.hastequest.view.View;
 
 public class SurvivalModeView extends View {
 
-    public SurvivalModeView(Context context){
-        super(context);
+    public SurvivalModeView(){
+        super();
     }
 
     @Override

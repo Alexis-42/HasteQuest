@@ -3,6 +3,7 @@ package com.jeu.hastequest.controller.gamemode;
 import com.jeu.hastequest.controller.Score;
 import com.jeu.hastequest.controller.games.Game;
 import com.jeu.hastequest.view.View;
+import com.jeu.hastequest.view.gamemode.FreePlayView;
 
 public class FreePlay extends GameMode{
     /**
@@ -17,6 +18,6 @@ public class FreePlay extends GameMode{
      * @param games
      **/
     public FreePlay(View view, Score[] scores, Game[] games) {
-        super(view, scores, games);
+        super(new FreePlayView(), scores, games);
     }
 }

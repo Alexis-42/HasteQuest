@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import com.jeu.hastequest.view.View;
 
 public class FreePlayView extends View {
-    public FreePlayView(Context context){
-        super(context);
+    public FreePlayView(){
+        super();
     }
 
     @Override

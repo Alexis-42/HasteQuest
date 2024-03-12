@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import com.jeu.hastequest.view.View;
 
 public class QuizzView extends View {
-    public QuizzView(Context context){
-        super(context);
+    public QuizzView(){
+        super();
     }
 
     @Override
