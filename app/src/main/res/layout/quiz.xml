@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".view.games.QuizzView">
+    android:background="@drawable/main_menu_bg"
+    tools:context=".controller.games.Quiz">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="60sp">
+        android:layout_marginTop="60sp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/question"
@@ -23,12 +26,6 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
-
-        <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="40sp"/>
 
     </LinearLayout>
 
@@ -77,5 +74,13 @@
             android:textColor="@color/black"/>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="347dp"
+        android:layout_height="40sp"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="bottom|center" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
