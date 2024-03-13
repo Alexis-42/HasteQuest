@@ -64,4 +64,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_empty">Empty</string>
     <string name="title_activity_test">Test</string>
+    <string name="regles">Règles</string>
+    <string name="fermerregles">FermerRegles</string>
 </resources>
