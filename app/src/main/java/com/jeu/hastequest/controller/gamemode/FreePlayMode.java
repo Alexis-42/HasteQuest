@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.jeu.hastequest.MainActivity;
 import com.jeu.hastequest.R;
@@ -17,7 +16,6 @@ public class FreePlayMode extends GameMode{
     public ImageButton prevButton ;
     public ImageButton nextButton;
     public Button playButton;
-    public ImageView gameImageView;
 
     public FreePlayMode(){
         super();
@@ -34,8 +32,6 @@ public class FreePlayMode extends GameMode{
         this.prevButton = findViewById(R.id.boutonNextJeu);
         this.nextButton = findViewById(R.id.boutonPreviousJeu);
         this.playButton = findViewById(R.id.boutonJouer);
-
-        this.gameImageView = findViewById(R.id.imageJeu);
 
         android.view.View.OnClickListener listener = v -> {
             if(v.getId() == R.id.boutonHome)
@@ -55,21 +51,16 @@ public class FreePlayMode extends GameMode{
         nextButton.setOnClickListener(listener);
         playButton.setOnClickListener(listener);
 
-        setGameImage();
-    }
-
-    public void setGameImage() {
-        this.gameImageView.setImageBitmap(selectedGame.gameImage);
     }
 
     public void previousGame(){
         this.selectedGame = getGameModeModel().selectPreviousGame();
-        setGameImage();
+
     }
 
     public void nextGame(){
         this.selectedGame = getGameModeModel().selectNextGame();
-        setGameImage();
+
     }
     @Override
     public void setGameModel() {
