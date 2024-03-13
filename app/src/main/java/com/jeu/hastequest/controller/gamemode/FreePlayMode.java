@@ -1,10 +1,12 @@
 package com.jeu.hastequest.controller.gamemode;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jeu.hastequest.MainActivity;
 import com.jeu.hastequest.R;
@@ -17,6 +19,7 @@ public class FreePlayMode extends GameMode{
     public ImageButton prevButton ;
     public ImageButton nextButton;
     public Button playButton;
+    public Button rulesButton;
     public ImageView gameImage;
 
     public FreePlayMode(){
@@ -34,6 +37,7 @@ public class FreePlayMode extends GameMode{
         this.prevButton = findViewById(R.id.boutonNextJeu);
         this.nextButton = findViewById(R.id.boutonPreviousJeu);
         this.playButton = findViewById(R.id.boutonJouer);
+        this.rulesButton = findViewById(R.id.boutonRegles);
         this.gameImage = findViewById(R.id.imageJeu);
 
         android.view.View.OnClickListener listener = v -> {
@@ -45,6 +49,10 @@ public class FreePlayMode extends GameMode{
                 previousGame();
             if(v.getId() == R.id.boutonJouer)
                 startActivity(new Intent(getApplicationContext(), this.selectedGame.getClass()));
+            if(v.getId() == R.id.boutonRegles) {
+                displayRules();
+            }
+
 
         };
 
@@ -52,8 +60,20 @@ public class FreePlayMode extends GameMode{
         prevButton.setOnClickListener(listener);
         nextButton.setOnClickListener(listener);
         playButton.setOnClickListener(listener);
+        rulesButton.setOnClickListener(listener);
 
         actualizeGameImage();
+    }
+
+    public void displayRules(){
+        Game jeu = this.selectedGame;
+        setContentView(R.layout.rules_menu);
+        @SuppressLint("CutPasteId") Button playBut = findViewById(R.id.boutonJouer);
+        ImageButton closeRulesBut = findViewById(R.id.fermerRegles);
+        playBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), jeu.getClass())));
+        closeRulesBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), FreePlayMode.class)));
+        TextView rules = (TextView)findViewById(R.id.regles);
+        rules.setText(selectedGame.gameModel.rules);
     }
 
     public void actualizeGameImage(){
