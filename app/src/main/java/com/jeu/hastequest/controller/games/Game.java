@@ -9,6 +9,7 @@ import com.jeu.hastequest.model.games.GameModel;
 abstract public class Game extends AppCompatActivity {
     public GameModel gameModel;
 
+    public int gameImage;
 
     public Game(GameModel gameModel){
         this.gameModel = gameModel;
@@ -18,4 +19,6 @@ abstract public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
     }
+
+    abstract void setGameImage();
 }

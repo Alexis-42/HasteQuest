@@ -14,7 +14,7 @@ public class FreePlayModeModel extends GameModeModel{
     }
 
     public Game selectNextGame(){
-        return selectGame((selectedGame.gameModel.id+1)%GameModel.globalId);
+        return selectGame((selectedGame.gameModel.id+1)%(GameModel.globalId+1));
     }
 
     public Game selectPreviousGame(){
