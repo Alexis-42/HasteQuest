@@ -66,4 +66,7 @@
     <string name="title_activity_test">Test</string>
     <string name="regles">Règles</string>
     <string name="fermerregles">FermerRegles</string>
+    <string name="jouer_butt">Jouer</string>
+    <string name="imagecoeur">ImageCoeur</string>
+    <string name="score_actuel_xx">Score actuel : XX</string>
 </resources>

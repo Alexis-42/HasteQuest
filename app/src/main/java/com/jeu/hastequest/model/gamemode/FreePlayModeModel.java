@@ -15,7 +15,7 @@ public class FreePlayModeModel extends GameModeModel{
     }
 
     public Game selectNextGame(){
-        return selectGame((selectedGame.gameModel.id+1)%(GameModel.globalId+1));
+        return selectGame((selectedGame.gameModel.id+1)%(GameModel.globalId)+1);
     }
 
     public Game selectPreviousGame(){
@@ -37,6 +37,6 @@ public class FreePlayModeModel extends GameModeModel{
     @Override
     public void setGames() {
         // TODO faire une methode qui récupère les jeux
-        this.games = new Game[]{new Dbh(),new Quiz()};
+        this.games = new Game[]{new Quiz(),new Dbh()};
     }
 }
