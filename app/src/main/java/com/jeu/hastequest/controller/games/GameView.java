@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.jeu.hastequest.R;
-import com.jeu.hastequest.model.games.GameOver;
+import com.jeu.hastequest.controller.gamemode.FreePlayMode;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -109,7 +109,7 @@ public class GameView extends View {
                 life--;
                 spikes.get(i).resetPosition();
                 if(life == 0){
-                    Intent intent = new Intent(context, GameOver.class);
+                    Intent intent = new Intent(context, FreePlayMode.class);
                     context.startActivity(intent);
                     ((Activity) context).finish();
                 }
@@ -124,7 +124,7 @@ public class GameView extends View {
         }
         if(life == 2){
             healthPaint.setColor(Color.YELLOW);
-        }else{
+        }else if(life == 1){
             healthPaint.setColor(Color.RED);
         }
         canvas.drawRect(dWidth-200,30,dWidth-200+60*life,80,healthPaint);
