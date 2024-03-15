@@ -19,19 +19,16 @@ public class Dbh extends Game{
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dbh);
+        GameView gameView = new GameView(this);
+        setContentView(gameView);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
-    void setGameImage() {
+    void setGameImage(){
         this.gameImage = R.drawable.game_title;
     }
 
-    public void startGame(View view){
-        GameView gameView = new GameView(this);
-        setContentView(gameView);
-    }
 
 }
 

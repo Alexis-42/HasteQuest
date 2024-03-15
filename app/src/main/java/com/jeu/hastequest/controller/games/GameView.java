@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.jeu.hastequest.R;
-import com.jeu.hastequest.model.games.GameOver;
+import com.jeu.hastequest.controller.gamemode.FreePlayMode;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -29,10 +29,8 @@ public class GameView extends View {
     final long UPDATE_MILLIS = 30;
     Runnable runnable;
     Paint textPaint = new Paint();
-    Paint healthPaint = new Paint();
     float TEXT_SIZE = 120;
-    int points = 0;
-    int life = 3;
+    int life = 1;
     static int dWidth, dHeight;
     Random random;
     float charX, charY;
@@ -66,8 +64,6 @@ public class GameView extends View {
         textPaint.setColor(Color.rgb(255,165,0));
         textPaint.setTextSize(TEXT_SIZE);
         textPaint.setTextAlign(Paint.Align.LEFT);
-        //textPaint.setTypeface(RessourcesCompat.getFont(context, R.font.kenney_bloc));
-        healthPaint.setColor(Color.GREEN);
         random = new Random();
         charX = dWidth / 2 - chara.getWidth() / 2;
         charY = dHeight - ground.getHeight() - chara.getHeight();
@@ -93,7 +89,6 @@ public class GameView extends View {
             }
             spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
             if(spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
-                points+=10;
                 Explosion explosion = new Explosion(context);
                 explosion.explosionX = spikes.get(i).spikeX;
                 explosion.explosionY = spikes.get(i).spikeY;
@@ -109,7 +104,7 @@ public class GameView extends View {
                 life--;
                 spikes.get(i).resetPosition();
                 if(life == 0){
-                    Intent intent = new Intent(context, GameOver.class);
+                    Intent intent = new Intent(context, FreePlayMode.class);
                     context.startActivity(intent);
                     ((Activity) context).finish();
                 }
@@ -122,13 +117,6 @@ public class GameView extends View {
                 explosions.remove(i);
             }
         }
-        if(life == 2){
-            healthPaint.setColor(Color.YELLOW);
-        }else{
-            healthPaint.setColor(Color.RED);
-        }
-        canvas.drawRect(dWidth-200,30,dWidth-200+60*life,80,healthPaint);
-        canvas.drawText(""+points,20,TEXT_SIZE,textPaint);
         handler.postDelayed(runnable,UPDATE_MILLIS);
     }
     @Override
