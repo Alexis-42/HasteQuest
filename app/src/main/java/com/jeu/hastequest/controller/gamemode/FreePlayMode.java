@@ -38,6 +38,8 @@ public class FreePlayMode extends GameMode{
         this.rulesButton = findViewById(R.id.boutonRegles);
         this.gameImage = findViewById(R.id.imageJeu);
 
+
+
         android.view.View.OnClickListener listener = v -> {
             if(v.getId() == R.id.boutonHome)
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -45,8 +47,13 @@ public class FreePlayMode extends GameMode{
                 nextGame();
             if(v.getId() == R.id.boutonPreviousJeu)
                 previousGame();
-            if(v.getId() == R.id.boutonJouer)
-                startActivity(new Intent(getApplicationContext(), getGameModeModel().selectedGame.getClass()));
+            if(v.getId() == R.id.boutonJouer) {
+                Intent intent = new Intent(this,  getGameModeModel().selectedGame.getClass());
+                Bundle extras = new Bundle();
+                extras.putBoolean("survival", false);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
             if(v.getId() == R.id.boutonRegles) {
                 displayRules();
             }
@@ -68,9 +75,9 @@ public class FreePlayMode extends GameMode{
         setContentView(R.layout.rules_menu);
         @SuppressLint("CutPasteId") Button playBut = findViewById(R.id.boutonJouer);
         ImageButton closeRulesBut = findViewById(R.id.fermerRegles);
-        playBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), jeu.getClass())));
-        closeRulesBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), FreePlayMode.class)));
-        TextView rules = (TextView)findViewById(R.id.regles);
+        playBut.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), jeu.getClass())));
+        closeRulesBut.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), FreePlayMode.class)));
+        TextView rules = findViewById(R.id.regles);
         rules.setText(getGameModeModel().selectedGame.gameModel.rules);
     }
 

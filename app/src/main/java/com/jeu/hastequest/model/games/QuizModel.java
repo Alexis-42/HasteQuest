@@ -2,7 +2,6 @@ package com.jeu.hastequest.model.games;
 
 public class QuizModel extends GameModel {
     public int currentQuestionIndex;
-    public String SelectedAnswer = "";
     public static String[] question ={
         "Léo le goat ?",
         "Combien de bonbons Carambar sont vendus chaque année en France ?",
@@ -37,7 +36,7 @@ public class QuizModel extends GameModel {
         }
     }
 
-    public boolean checkAnswer(String answer){
+    public boolean isCorrect(String answer){
         return answer.equals(correctAnswer[currentQuestionIndex]);
     }
 

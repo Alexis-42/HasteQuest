@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -17,11 +18,14 @@ import android.view.View;
 
 import com.jeu.hastequest.R;
 import com.jeu.hastequest.controller.gamemode.FreePlayMode;
+import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameView extends View {
+    int vie, difficulty, score;
+    boolean isSurvival;
     Bitmap background, ground, chara;
     Rect rectBackground, rectGround;
     Context context;
@@ -41,8 +45,12 @@ public class GameView extends View {
 
 
 
-    public GameView(Context context) {
+    public GameView(Context context, int vie, int difficulty, int score, boolean isSurvival) {
         super(context);
+        this.isSurvival = isSurvival;
+        this.vie = vie;
+        this.difficulty = difficulty;
+        this.score = score;
         this.context = context;
         background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         ground = BitmapFactory.decodeResource(getResources(), R.drawable.ground);
@@ -55,12 +63,7 @@ public class GameView extends View {
         rectBackground = new Rect(0,0,dWidth,dHeight);
         rectGround = new Rect(0,dHeight - ground.getHeight(),dWidth,dHeight);
         handler = new Handler();
-        runnable = new Runnable(){
-            @Override
-            public void run(){
-                invalidate();
-            }
-        };
+        runnable = this::invalidate;
         textPaint.setColor(Color.rgb(255,165,0));
         textPaint.setTextSize(TEXT_SIZE);
         textPaint.setTextAlign(Paint.Align.LEFT);
@@ -104,9 +107,24 @@ public class GameView extends View {
                 life--;
                 spikes.get(i).resetPosition();
                 if(life == 0){
-                    Intent intent = new Intent(context, FreePlayMode.class);
-                    context.startActivity(intent);
-                    ((Activity) context).finish();
+                    if(this.isSurvival){
+                        Intent intent = new Intent(context, SurvivalMode.class);
+                        Bundle extras = new Bundle();
+                        extras.putInt("score", this.score);
+                        extras.putInt("lives", this.vie-1);
+                        extras.putInt("difficulty", this.difficulty+1);
+                        extras.putBoolean("survival", true);
+                        intent.putExtras(extras);
+                        context.startActivity(intent);
+                        ((Activity) context).finish();
+                    }else {
+                        Intent intent = new Intent(context, FreePlayMode.class);
+                        Bundle extras = new Bundle();
+                        extras.putBoolean("survival", false);
+                        intent.putExtras(extras);
+                        context.startActivity(intent);
+                        ((Activity) context).finish();
+                    }
                 }
             }
         }

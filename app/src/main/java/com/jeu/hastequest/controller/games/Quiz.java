@@ -1,10 +1,13 @@
 package com.jeu.hastequest.controller.games;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.jeu.hastequest.R;
+import com.jeu.hastequest.controller.gamemode.FreePlayMode;
+import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 import com.jeu.hastequest.model.games.QuizModel;
 
 public class Quiz extends Game{
@@ -22,6 +25,14 @@ public class Quiz extends Game{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        assert extras != null;
+        boolean isSurvival = extras.getBoolean("survival");
+        int lives;
+        int score;
+        int difficulty;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
 
@@ -31,12 +42,17 @@ public class Quiz extends Game{
         this.anwsersButtonC = findViewById(R.id.ansC);
         this.anwsersButtonD = findViewById(R.id.ansD);
 
-        android.view.View.OnClickListener listener = v -> {
-            if(v.getId() == R.id.ansA);
-            if(v.getId() == R.id.ansB);
-            if(v.getId() == R.id.ansC);
-            if(v.getId() == R.id.ansD);
-        };
+        if(isSurvival){
+            lives = extras.getInt("lives");
+            score = extras.getInt("score");
+            difficulty = extras.getInt("difficulty");
+        } else {
+            lives = 0;
+            difficulty = 0;
+            score = 0;
+        }
+
+        android.view.View.OnClickListener listener = v -> handleAnwser(((Button)v).getText().toString(),isSurvival,score,difficulty,lives);
 
         this.anwsersButtonA.setOnClickListener(listener);
         this.anwsersButtonB.setOnClickListener(listener);
@@ -45,6 +61,32 @@ public class Quiz extends Game{
 
         loadQuestion();
 
+    }
+
+    public void handleAnwser(String stringPressed, boolean isSurvival, int score, int difficulty, int lives){
+        if(isSurvival){
+            if(getQuizModel().isCorrect(stringPressed)) {
+                score += 1;
+                difficulty += 1;
+            }else{
+                lives -= 1;
+            }
+            Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
+            Bundle extras = new Bundle();
+            extras.putInt("score", score);
+            extras.putInt("lives", lives);
+            extras.putInt("difficulty", difficulty);
+            extras.putBoolean("survival", true);
+            intent.putExtras(extras);
+            startActivity(intent);
+        }else{
+            // TODO : faire qque chose si faux en mode freeplay
+            Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
+            Bundle extras = new Bundle();
+            extras.putBoolean("survival", false);
+            intent.putExtras(extras);
+            startActivity(intent);
+        }
     }
 
     @Override

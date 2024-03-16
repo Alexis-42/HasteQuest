@@ -4,10 +4,12 @@ import com.jeu.hastequest.controller.games.Game;
 import com.jeu.hastequest.model.Score;
 
 public class SurvivalModeModel extends GameModeModel {
+    public int lives;
     public Game selectedGame;
     public SurvivalModeModel() {
         super();
         this.selectedGame = getRandomGame();
+        this.lives = 3;
     }
 
     public Game getRandomGame(){
@@ -18,15 +20,6 @@ public class SurvivalModeModel extends GameModeModel {
     public Score[] gameGetScore() {
         // TODO faire une methode qui récupère le fichier save
         return new Score[0];
-    }
-
-    public Game getAnotherGame(){
-        Game jeuSelec = getRandomGame();
-        while(jeuSelec == selectedGame){
-            jeuSelec = getRandomGame();
-        }
-        this.selectedGame = jeuSelec;
-        return jeuSelec;
     }
 
     private int getRandomNumber(int max) {
