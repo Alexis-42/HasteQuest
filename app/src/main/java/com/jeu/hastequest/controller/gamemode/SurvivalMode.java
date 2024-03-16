@@ -64,6 +64,7 @@ public class SurvivalMode extends GameMode{
     public void handlePlayButton(){
         setContentView(R.layout.start_menu);
         Button startButton = findViewById(R.id.boutonJouer);
+        ImageButton homeButton = findViewById(R.id.boutonHome);
         ImageView gameImage = findViewById(R.id.imageJeu);
         TextView score = findViewById(R.id.score);
         ImageView heartImage1 = findViewById(R.id.heart1);
@@ -94,6 +95,7 @@ public class SurvivalMode extends GameMode{
             }
         }
         score.setText(String.format("Score actuel : " + this.getGamemodeModel().currentScore.score));
+        homeButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
     }
 
     public void displayRules(){
