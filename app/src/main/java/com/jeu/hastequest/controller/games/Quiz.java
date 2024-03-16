@@ -1,7 +1,9 @@
 package com.jeu.hastequest.controller.games;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -71,14 +73,27 @@ public class Quiz extends Game{
             }else{
                 lives -= 1;
             }
-            Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
-            Bundle extras = new Bundle();
-            extras.putInt("score", score);
-            extras.putInt("lives", lives);
-            extras.putInt("difficulty", difficulty);
-            extras.putBoolean("survival", true);
-            intent.putExtras(extras);
-            startActivity(intent);
+
+            handleColorChange(this.anwsersButtonA);
+            handleColorChange(this.anwsersButtonB);
+            handleColorChange(this.anwsersButtonC);
+            handleColorChange(this.anwsersButtonD);
+
+            Handler handler = new Handler();
+            int finalScore = score;
+            int finalLives = lives;
+            int finalDifficulty = difficulty;
+            handler.postDelayed(() -> {
+                Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
+                Bundle extras = new Bundle();
+                extras.putInt("score", finalScore);
+                extras.putInt("lives", finalLives);
+                extras.putInt("difficulty", finalDifficulty);
+                extras.putBoolean("survival", true);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }, 1500);
+
         }else{
             // TODO : faire qque chose si faux en mode freeplay
             Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
@@ -87,6 +102,15 @@ public class Quiz extends Game{
             intent.putExtras(extras);
             startActivity(intent);
         }
+    }
+
+    public void handleColorChange(Button button){
+        if(getQuizModel().isCorrect(button.getText().toString())){
+            button.setBackgroundColor(Color.parseColor("#00FF00"));
+        }else{
+            button.setBackgroundColor(Color.parseColor("#FF0000"));
+        }
+        button.setTextColor(Color.parseColor("#FFFFFF"));
     }
 
     @Override
