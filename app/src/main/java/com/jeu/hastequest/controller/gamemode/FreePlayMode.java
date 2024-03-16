@@ -14,7 +14,6 @@ import com.jeu.hastequest.controller.games.Game;
 import com.jeu.hastequest.model.gamemode.FreePlayModeModel;
 
 public class FreePlayMode extends GameMode{
-    public Game selectedGame;
     public ImageButton homeButton;
     public ImageButton prevButton ;
     public ImageButton nextButton;
@@ -25,7 +24,6 @@ public class FreePlayMode extends GameMode{
     public FreePlayMode(){
         super();
         setGameModel();
-        this.selectedGame = getGameModeModel().selectedGame;
     }
 
     @Override
@@ -48,7 +46,7 @@ public class FreePlayMode extends GameMode{
             if(v.getId() == R.id.boutonPreviousJeu)
                 previousGame();
             if(v.getId() == R.id.boutonJouer)
-                startActivity(new Intent(getApplicationContext(), this.selectedGame.getClass()));
+                startActivity(new Intent(getApplicationContext(), getGameModeModel().selectedGame.getClass()));
             if(v.getId() == R.id.boutonRegles) {
                 displayRules();
             }
@@ -66,27 +64,27 @@ public class FreePlayMode extends GameMode{
     }
 
     public void displayRules(){
-        Game jeu = this.selectedGame;
+        Game jeu = getGameModeModel().selectedGame;
         setContentView(R.layout.rules_menu);
         @SuppressLint("CutPasteId") Button playBut = findViewById(R.id.boutonJouer);
         ImageButton closeRulesBut = findViewById(R.id.fermerRegles);
         playBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), jeu.getClass())));
         closeRulesBut.setOnClickListener((android.view.View.OnClickListener)paramInutile -> startActivity(new Intent(getApplicationContext(), FreePlayMode.class)));
         TextView rules = (TextView)findViewById(R.id.regles);
-        rules.setText(selectedGame.gameModel.rules);
+        rules.setText(getGameModeModel().selectedGame.gameModel.rules);
     }
 
     public void actualizeGameImage(){
-        gameImage.setImageResource(selectedGame.gameImage);
+        gameImage.setImageResource(getGameModeModel().selectedGame.gameImage);
     }
 
     public void previousGame(){
-        this.selectedGame = getGameModeModel().selectPreviousGame();
+        this.getGameModeModel().selectedGame = getGameModeModel().selectPreviousGame();
         actualizeGameImage();
     }
 
     public void nextGame(){
-        this.selectedGame = getGameModeModel().selectNextGame();
+        this.getGameModeModel().selectedGame = getGameModeModel().selectNextGame();
         actualizeGameImage();
     }
     @Override

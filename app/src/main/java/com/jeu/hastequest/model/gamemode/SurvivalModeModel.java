@@ -20,6 +20,15 @@ public class SurvivalModeModel extends GameModeModel {
         return new Score[0];
     }
 
+    public Game getAnotherGame(){
+        Game jeuSelec = getRandomGame();
+        while(jeuSelec == selectedGame){
+            jeuSelec = getRandomGame();
+        }
+        this.selectedGame = jeuSelec;
+        return jeuSelec;
+    }
+
     private int getRandomNumber(int max) {
         return (int) ((Math.random() * (max)) + 0);
     }

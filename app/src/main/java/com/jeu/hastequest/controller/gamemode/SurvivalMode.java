@@ -11,15 +11,12 @@ import android.widget.TextView;
 
 import com.jeu.hastequest.MainActivity;
 import com.jeu.hastequest.R;
-import com.jeu.hastequest.controller.games.Game;
-import com.jeu.hastequest.model.gamemode.FreePlayModeModel;
 import com.jeu.hastequest.model.gamemode.SurvivalModeModel;
 
 public class SurvivalMode extends GameMode{
     public ImageButton homeButton;
     public Button playButton;
     public Button rulesButton;
-    public Game selectedGame;
     @Override
     public void setGameModel() {
         this.gameModeModel = new SurvivalModeModel();
@@ -28,7 +25,7 @@ public class SurvivalMode extends GameMode{
     public SurvivalMode(){
         super();
         setGameModel();
-        this.selectedGame = getGameModeModel().selectedGame;
+        getGameModeModel().selectedGame = getGameModeModel().selectedGame;
     }
 
     @Override
