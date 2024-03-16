@@ -4,15 +4,13 @@ abstract public class GameModel{
     public String gameName;
     public String rules;
     public int maxTime;
-    static public int globalId = 0;
     public final int id;
 
-    public GameModel(int initialMaxTime, String gameName, String rules){
+    public GameModel(int initialMaxTime, String gameName, String rules, int id){
         this.maxTime = initialMaxTime;
         this.gameName = gameName;
         this.rules = rules;
-        this.id = globalId;
-        ++globalId;
+        this.id = id;
     }
 
     abstract public int computeMaxTime(int difficulty);

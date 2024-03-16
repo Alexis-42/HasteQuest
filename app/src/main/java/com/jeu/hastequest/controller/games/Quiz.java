@@ -124,7 +124,6 @@ public class Quiz extends Game{
         this.anwsersButtonB.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][1]);
         this.anwsersButtonC.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][2]);
         this.anwsersButtonD.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][3]);
-
     }
 
     public QuizModel getQuizModel(){

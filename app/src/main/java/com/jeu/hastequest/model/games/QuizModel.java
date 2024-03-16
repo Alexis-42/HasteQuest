@@ -22,7 +22,8 @@ public class QuizModel extends GameModel {
     public QuizModel() {
         super(30,
                 "Quizz",
-                "Trouve la réponse correcte dans un temps impartie");
+                "Trouve la réponse correcte dans un temps impartie",
+                0);
         currentQuestionIndex = getRandomNumber(question.length );
     }
 
