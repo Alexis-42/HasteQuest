@@ -11,13 +11,11 @@ public class FreePlayModeModel extends GameModeModel{
     }
 
     public Game selectNextGame(){
-        if(selectedGame.gameModel.id >= games.length)
-            return games[0];
-        return games[selectedGame.gameModel.id+1];
+        return games[(selectedGame.gameModel.id+1)%(games.length)];
     }
 
     public Game selectPreviousGame(){
-        if(selectedGame.gameModel.id <= 1)
+        if(selectedGame.gameModel.id <= 0)
             return games[games.length-1];
         return games[selectedGame.gameModel.id-1];
     }
