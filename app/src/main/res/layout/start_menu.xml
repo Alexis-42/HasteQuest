@@ -10,13 +10,43 @@
     tools:context=".controller.games.Dbh">
 
 
+    <ImageButton
+        android:id="@+id/boutonHome"
+        android:layout_width="56dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="321dp"
+        android:layout_marginBottom="743dp"
+        android:contentDescription="@string/retour_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/homeAsUpIndicator" />
+
+    <ImageView
+        android:id="@+id/heart2"
+        android:layout_width="62dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="166dp"
+        android:layout_marginBottom="61dp"
+        android:contentDescription="@string/imagecoeur"
+        app:layout_constraintBottom_toTopOf="@+id/imageJeu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score"
+        app:srcCompat="@drawable/heart" />
+
     <ImageView
         android:id="@+id/heart3"
         android:layout_width="62dp"
         android:layout_height="44dp"
-        android:layout_marginTop="131dp"
+        android:layout_marginTop="112dp"
         android:layout_marginEnd="104dp"
-        android:layout_marginBottom="632dp"
+        android:layout_marginBottom="651dp"
         android:contentDescription="@string/imagecoeur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,27 +55,12 @@
         app:srcCompat="@drawable/heart" />
 
     <ImageView
-        android:id="@+id/heart2"
-        android:layout_width="62dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="166dp"
-        android:layout_marginBottom="42dp"
-        android:contentDescription="@string/imagecoeur"
-        app:layout_constraintBottom_toTopOf="@+id/imageJeu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/heart" />
-
-    <ImageView
         android:id="@+id/heart1"
         android:layout_width="62dp"
         android:layout_height="44dp"
         android:layout_marginStart="103dp"
-        android:layout_marginTop="131dp"
-        android:layout_marginBottom="632dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="651dp"
         android:contentDescription="@string/imagecoeur"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/heart2"
@@ -90,16 +105,16 @@
         android:id="@+id/score"
         android:layout_width="206dp"
         android:layout_height="36dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginTop="67dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="94dp"
-        android:layout_marginBottom="704dp"
+        android:layout_marginBottom="743dp"
         android:text="@string/score_actuel_xx"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/boutonHome"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

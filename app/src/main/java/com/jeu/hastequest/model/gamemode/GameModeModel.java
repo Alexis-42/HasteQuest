@@ -1,6 +1,8 @@
 package com.jeu.hastequest.model.gamemode;
 
+import com.jeu.hastequest.controller.games.Dbh;
 import com.jeu.hastequest.controller.games.Game;
+import com.jeu.hastequest.controller.games.Quiz;
 import com.jeu.hastequest.model.Score;
 
 abstract public class GameModeModel {
@@ -13,8 +15,8 @@ abstract public class GameModeModel {
         this.scores = gameGetScore();
         this.difficulty = 0;
         this.currentScore = new Score(0,"");
+        this.games = new Game[]{new Quiz(),new Dbh()};
     }
 
     abstract public Score[] gameGetScore();
-    abstract public void setGames();
 }

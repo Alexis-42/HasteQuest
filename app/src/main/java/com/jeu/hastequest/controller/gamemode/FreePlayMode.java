@@ -34,8 +34,8 @@ public class FreePlayMode extends GameMode{
         setContentView(R.layout.free_play);
 
         this.homeButton = findViewById(R.id.boutonHome);
-        this.prevButton = findViewById(R.id.boutonNextJeu);
-        this.nextButton = findViewById(R.id.boutonPreviousJeu);
+        this.nextButton = findViewById(R.id.boutonNextJeu);
+        this.prevButton = findViewById(R.id.boutonPreviousJeu);
         this.playButton = findViewById(R.id.boutonJouer);
         this.rulesButton = findViewById(R.id.boutonRegles);
         this.gameImage = findViewById(R.id.imageJeu);
