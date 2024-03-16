@@ -66,6 +66,11 @@ public class Quiz extends Game{
     }
 
     public void handleAnwser(String stringPressed, boolean isSurvival, int score, int difficulty, int lives){
+        handleColorChange(this.anwsersButtonA);
+        handleColorChange(this.anwsersButtonB);
+        handleColorChange(this.anwsersButtonC);
+        handleColorChange(this.anwsersButtonD);
+
         if(isSurvival){
             if(getQuizModel().isCorrect(stringPressed)) {
                 score += 1;
@@ -73,11 +78,6 @@ public class Quiz extends Game{
             }else{
                 lives -= 1;
             }
-
-            handleColorChange(this.anwsersButtonA);
-            handleColorChange(this.anwsersButtonB);
-            handleColorChange(this.anwsersButtonC);
-            handleColorChange(this.anwsersButtonD);
 
             Handler handler = new Handler();
             int finalScore = score;
