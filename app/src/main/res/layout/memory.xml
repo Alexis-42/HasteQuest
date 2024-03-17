@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_menu_bg">
+
+    <ImageView
+        android:id="@+id/carte4"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="494dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte12"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="413dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="294dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte9"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="413dp"
+        android:layout_marginEnd="291dp"
+        android:layout_marginBottom="294dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte11"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="197dp"
+        android:layout_marginTop="413dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="294dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte10"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="413dp"
+        android:layout_marginEnd="196dp"
+        android:layout_marginBottom="294dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte5"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="291dp"
+        android:layout_marginBottom="394dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte8"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="292dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="394dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte3"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="197dp"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="494dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte7"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="197dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="101dp"
+        android:layout_marginBottom="394dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte6"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="196dp"
+        android:layout_marginBottom="394dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte1"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="291dp"
+        android:layout_marginBottom="494dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+    <ImageView
+        android:id="@+id/carte2"
+        android:layout_width="95dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="213dp"
+        android:layout_marginEnd="196dp"
+        android:layout_marginBottom="494dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/intero_point" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
