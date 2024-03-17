@@ -12,9 +12,13 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.jeu.hastequest.R;
 import com.jeu.hastequest.controller.gamemode.FreePlayMode;
@@ -41,7 +45,10 @@ public class GameView extends View {
     float oldX;
     float oldCharX;
     ArrayList<Spike> spikes;
+    public int seconds = 20;
     ArrayList<Explosion>explosions;
+    private Handler handlerChrono;
+    private Runnable runnableChrono;
 
 
 
@@ -76,7 +83,9 @@ public class GameView extends View {
             Spike spike = new Spike(context);
             spikes.add(spike);
         }
+        init(context);
     }
+
 
     @Override
     protected void onDraw(Canvas canvas){
@@ -135,6 +144,27 @@ public class GameView extends View {
                 explosions.remove(i);
             }
         }
+        if(seconds<=0){
+            if(this.isSurvival){
+                Intent intent = new Intent(context, SurvivalMode.class);
+                Bundle extras = new Bundle();
+                extras.putInt("score", this.score);
+                extras.putInt("lives", this.vie);
+                extras.putInt("difficulty", this.difficulty+1);
+                extras.putBoolean("survival", true);
+                intent.putExtras(extras);
+                context.startActivity(intent);
+                ((Activity) context).finish();
+            }else {
+                Intent intent = new Intent(context, FreePlayMode.class);
+                Bundle extras = new Bundle();
+                extras.putBoolean("survival", false);
+                intent.putExtras(extras);
+                context.startActivity(intent);
+                ((Activity) context).finish();
+            }
+        }
+        canvas.drawText("" + seconds, 20, TEXT_SIZE, textPaint);
         handler.postDelayed(runnable,UPDATE_MILLIS);
     }
     @Override
@@ -160,6 +190,60 @@ public class GameView extends View {
             }
         }
         return true;
+    }
+
+    private void init(Context context){
+        handler.postDelayed(runnable,UPDATE_MILLIS);
+        handlerChrono = new Handler();
+        runnableChrono = new Runnable() {
+            @Override
+            public void run() {
+                seconds--;
+                //Log.i("seconds", seconds+"s");
+                handlerChrono.postDelayed(this, 1000); // Répète le runnable après un délai
+            }
+        };
+        handlerChrono.postDelayed(runnableChrono, 1000); // Démarrer le runnable avec un délai initial
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        handler.removeCallbacks(runnable); // Arrêter le runnable lorsque la vue est détachée de la fenêtre
+        handlerChrono.removeCallbacks(runnableChrono);
+    }
+
+    // Vue personnalisée pour dessiner le chronomètre
+    private class ChronometerView extends View {
+
+        private Paint textPaint;
+
+        public ChronometerView(Context context) {
+            super(context);
+            init();
+        }
+
+        public ChronometerView(Context context, @Nullable AttributeSet attrs) {
+            super(context, attrs);
+            init();
+        }
+
+        public ChronometerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+            init();
+        }
+
+        private void init() {
+            textPaint = new Paint();
+            textPaint.setColor(Color.BLACK);
+            textPaint.setTextSize(TEXT_SIZE);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            canvas.drawText("" + seconds, 20, TEXT_SIZE, textPaint);
+        }
     }
 
 }
