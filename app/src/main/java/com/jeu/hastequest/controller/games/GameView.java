@@ -81,6 +81,7 @@ public class GameView extends View {
         explosions = new ArrayList<>();
         for(int i=0;i<3;i++){
             Spike spike = new Spike(context);
+            spike.spikeVelocity+=2*this.difficulty;
             spikes.add(spike);
         }
         init(context);
@@ -106,6 +107,7 @@ public class GameView extends View {
                 explosion.explosionY = spikes.get(i).spikeY;
                 explosions.add(explosion);
                 spikes.get(i).resetPosition();
+                spikes.get(i).spikeVelocity+=2*this.difficulty;
             }
         }
         for(int i=0; i<spikes.size();i++){
@@ -115,6 +117,7 @@ public class GameView extends View {
                     &&spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() <= charY + chara.getHeight()){
                 life--;
                 spikes.get(i).resetPosition();
+                spikes.get(i).spikeVelocity+=2*this.difficulty;
                 if(life == 0){
                     if(this.isSurvival){
                         Intent intent = new Intent(context, SurvivalMode.class);
