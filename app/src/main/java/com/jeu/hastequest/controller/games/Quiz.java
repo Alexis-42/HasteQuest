@@ -13,12 +13,13 @@ import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 import com.jeu.hastequest.model.games.QuizModel;
 
 public class Quiz extends Game{
+    public boolean finished = false;
     public Button anwsersButtonA;
     public Button anwsersButtonB;
     public Button anwsersButtonC;
     public Button anwsersButtonD;
     public TextView question;
-
+    public TextView chronometer;
 
     public Quiz(){
         super(new QuizModel());
@@ -43,6 +44,7 @@ public class Quiz extends Game{
         this.anwsersButtonB = findViewById(R.id.ansB);
         this.anwsersButtonC = findViewById(R.id.ansC);
         this.anwsersButtonD = findViewById(R.id.ansD);
+        this.chronometer = findViewById(R.id.chrono);
 
         if(isSurvival){
             lives = extras.getInt("lives");
@@ -62,7 +64,7 @@ public class Quiz extends Game{
         this.anwsersButtonD.setOnClickListener(listener);
 
         loadQuestion();
-
+        getQuizModel().init(this,isSurvival, score, lives, difficulty);
     }
 
     public void handleAnwser(String stringPressed, boolean isSurvival, int score, int difficulty, int lives){
@@ -128,5 +130,32 @@ public class Quiz extends Game{
 
     public QuizModel getQuizModel(){
         return (QuizModel) this.gameModel;
+    }
+
+    public void updateTime(int seconds) {
+        this.chronometer.setText(String.valueOf(seconds));
+    }
+
+    public void checkWin(boolean isSurvival, int score, int lives, int difficulty) {
+        if(getQuizModel().seconds<=0){
+            if(isSurvival){
+                this.finished = true;
+                Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
+                Bundle extras = new Bundle();
+                extras.putInt("score", score);
+                extras.putInt("lives", lives-1);
+                extras.putInt("difficulty", difficulty);
+                extras.putBoolean("survival", true);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }else {
+                this.finished = true;
+                Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
+                Bundle extras = new Bundle();
+                extras.putBoolean("survival", false);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        }
     }
 }

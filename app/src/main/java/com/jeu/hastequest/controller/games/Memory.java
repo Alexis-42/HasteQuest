@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jeu.hastequest.R;
 import com.jeu.hastequest.controller.gamemode.FreePlayMode;
@@ -14,11 +15,13 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Memory extends Game{
+    public boolean finished = false;
 
     public ImageView card1,card2,card3,card4,card5,card6,card7,card8,card9,card10,card11,card12;
     public int image1,image2,image3,image4,image5,image6;
 
     public ImageView clickedFirst;
+    public TextView chronometer;
 
     public boolean waitForReturn;
 
@@ -58,6 +61,8 @@ public class Memory extends Game{
         this.card11 = findViewById(R.id.carte11);
         this.card12 = findViewById(R.id.carte12);
 
+        this.chronometer = findViewById(R.id.chrono);
+
         if(isSurvival){
             lives = extras.getInt("lives");
             score = extras.getInt("score");
@@ -83,6 +88,8 @@ public class Memory extends Game{
         this.card10.setOnClickListener(v -> flipCard(9,card10,isSurvival,score,difficulty,lives));
         this.card11.setOnClickListener(v -> flipCard(10,card11,isSurvival,score,difficulty,lives));
         this.card12.setOnClickListener(v -> flipCard(11,card12,isSurvival,score,difficulty,lives));
+
+        getModel().init(this,isSurvival, score, lives, difficulty);
     }
 
     public void flipCard(int i, ImageView card, boolean isSurvival, int score, int difficulty, int lives){
@@ -115,7 +122,7 @@ public class Memory extends Game{
                 getModel().clickedFirst = cardArray[i];
                 getModel().idFirst = i;
                 getModel().cardNumber = 2;
-            } else if (getModel().cardNumber == 2) {
+            } else if (getModel().cardNumber == 2 && card != this.clickedFirst){
                 getModel().clickedSecond = cardArray[i];
                 getModel().idSecond = i;
                 getModel().cardNumber = 1;
@@ -155,7 +162,7 @@ public class Memory extends Game{
                     } else {
                         intent = new Intent(getApplicationContext(), FreePlayMode.class);
                     }
-
+                    this.finished = true;
                     extras.putBoolean("survival", isSurvival);
                     intent.putExtras(extras);
                     startActivity(intent);
@@ -180,5 +187,32 @@ public class Memory extends Game{
     @Override
     void setGameImage() {
         this.gameImage = R.drawable.memory;
+    }
+
+    public void updateTime(int seconds) {
+        this.chronometer.setText(String.valueOf(seconds));
+    }
+
+    public void checkWin(boolean isSurvival, int score, int lives, int difficulty){
+        if(getModel().seconds<=0){
+            if(isSurvival){
+                this.finished = true;
+                Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
+                Bundle extras = new Bundle();
+                extras.putInt("score", score);
+                extras.putInt("lives", lives-1);
+                extras.putInt("difficulty", difficulty);
+                extras.putBoolean("survival", true);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }else {
+                this.finished = true;
+                Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
+                Bundle extras = new Bundle();
+                extras.putBoolean("survival", false);
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        }
     }
 }
