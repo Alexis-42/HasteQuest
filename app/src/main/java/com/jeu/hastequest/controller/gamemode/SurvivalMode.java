@@ -90,13 +90,13 @@ public class SurvivalMode extends GameMode{
                     heartImage1.setVisibility(View.INVISIBLE);
                     if(getGameModeModel().lives <= 0)
                         // TODO FAIRE UN POP UP POUR DIRE QUE C'EST FINI
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        /*setContentView(R.layout.scoremenu);
+                        //startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        setContentView(R.layout.scoremenu);
                         //TextView scoreText = findViewById(R.id.score);
-                        /*bouton home
+                        //bouton home
                         ImageButton homeScoreButton = findViewById(R.id.boutonHome);
                         homeScoreButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
-                        /*bouton réessayer
+                        //bouton réessayer
                         this.gameModeModel = new SurvivalModeModel();
                         Intent intentRetry = new Intent(this,  this.getGamemodeModel().selectedGame.getClass());
                         Bundle extrasRetry = new Bundle();
@@ -106,7 +106,7 @@ public class SurvivalMode extends GameMode{
                         extrasRetry.putBoolean("survival", true);
                         intentRetry.putExtras(extrasRetry);
                         Button startScoreButton = findViewById(R.id.boutonJouer);
-                        startScoreButton.setOnClickListener(paramInutile -> startActivity(intentRetry));*/
+                        startScoreButton.setOnClickListener(paramInutile -> startActivity(intentRetry));
                 }
             }
         }

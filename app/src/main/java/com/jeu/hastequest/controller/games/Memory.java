@@ -3,6 +3,7 @@ package com.jeu.hastequest.controller.games;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -137,6 +138,7 @@ public class Memory extends Game{
 
                     @Override
                     public void run() {
+                        Log.i("memorie", "memorie handler running");
                         if (getModel().calculate()) {
                             card.setVisibility(ImageView.INVISIBLE);
                             clickedFirst.setVisibility(ImageView.INVISIBLE);

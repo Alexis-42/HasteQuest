@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,7 +13,7 @@ import com.jeu.hastequest.controller.gamemode.FreePlayMode;
 import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 import com.jeu.hastequest.model.games.QuizModel;
 
-public class Quiz extends Game{
+public class Quiz extends Game {
     public boolean finished = false;
     public Button anwsersButtonA;
     public Button anwsersButtonB;
@@ -21,13 +22,13 @@ public class Quiz extends Game{
     public TextView question;
     public TextView chronometer;
 
-    public Quiz(){
+    public Quiz() {
         super(new QuizModel());
         setGameImage();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         assert extras != null;
@@ -46,7 +47,7 @@ public class Quiz extends Game{
         this.anwsersButtonD = findViewById(R.id.ansD);
         this.chronometer = findViewById(R.id.chrono);
 
-        if(isSurvival){
+        if (isSurvival) {
             lives = extras.getInt("lives");
             score = extras.getInt("score");
             difficulty = extras.getInt("difficulty");
@@ -56,7 +57,7 @@ public class Quiz extends Game{
             score = 0;
         }
 
-        android.view.View.OnClickListener listener = v -> handleAnwser(((Button)v).getText().toString(),isSurvival,score,difficulty,lives);
+        android.view.View.OnClickListener listener = v -> handleAnwser(((Button) v).getText().toString(), isSurvival, score, difficulty, lives);
 
         this.anwsersButtonA.setOnClickListener(listener);
         this.anwsersButtonB.setOnClickListener(listener);
@@ -64,20 +65,21 @@ public class Quiz extends Game{
         this.anwsersButtonD.setOnClickListener(listener);
 
         loadQuestion();
-        getQuizModel().init(this,isSurvival, score, lives, difficulty);
+        getQuizModel().init(this, isSurvival, score, lives, difficulty);
     }
 
-    public void handleAnwser(String stringPressed, boolean isSurvival, int score, int difficulty, int lives){
+    public void handleAnwser(String stringPressed, boolean isSurvival, int score, int difficulty, int lives) {
         handleColorChange(this.anwsersButtonA);
         handleColorChange(this.anwsersButtonB);
         handleColorChange(this.anwsersButtonC);
         handleColorChange(this.anwsersButtonD);
-
-        if(isSurvival){
-            if(getQuizModel().isCorrect(stringPressed)) {
+        Log.i("handleanswerquiz", "quiz répondu");
+        this.getQuizModel().handlerChrono.removeCallbacks(this.getQuizModel().runnableChrono);
+        if (isSurvival) {
+            if (getQuizModel().isCorrect(stringPressed)) {
                 score += 1;
                 difficulty += 1;
-            }else{
+            } else {
                 lives -= 1;
             }
 
@@ -96,7 +98,7 @@ public class Quiz extends Game{
                 startActivity(intent);
             }, 1500);
 
-        }else{
+        } else {
             // TODO : faire qque chose si faux en mode freeplay
             Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
             Bundle extras = new Bundle();
@@ -106,10 +108,10 @@ public class Quiz extends Game{
         }
     }
 
-    public void handleColorChange(Button button){
-        if(getQuizModel().isCorrect(button.getText().toString())){
+    public void handleColorChange(Button button) {
+        if (getQuizModel().isCorrect(button.getText().toString())) {
             button.setBackgroundColor(Color.parseColor("#00FF00"));
-        }else{
+        } else {
             button.setBackgroundColor(Color.parseColor("#FF0000"));
         }
         button.setTextColor(Color.parseColor("#FFFFFF"));
@@ -120,7 +122,7 @@ public class Quiz extends Game{
         this.gameImage = R.drawable.quiz;
     }
 
-    public void loadQuestion(){
+    public void loadQuestion() {
         this.question.setText(QuizModel.question[getQuizModel().currentQuestionIndex]);
         this.anwsersButtonA.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][0]);
         this.anwsersButtonB.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][1]);
@@ -128,7 +130,7 @@ public class Quiz extends Game{
         this.anwsersButtonD.setText(QuizModel.choices[getQuizModel().currentQuestionIndex][3]);
     }
 
-    public QuizModel getQuizModel(){
+    public QuizModel getQuizModel() {
         return (QuizModel) this.gameModel;
     }
 
@@ -137,18 +139,19 @@ public class Quiz extends Game{
     }
 
     public void checkWin(boolean isSurvival, int score, int lives, int difficulty) {
-        if(getQuizModel().seconds<=0){
-            if(isSurvival){
+        if (getQuizModel().seconds <= 0) {
+            this.getQuizModel().handlerChrono.removeCallbacks(this.getQuizModel().runnableChrono);
+            if (isSurvival) {
                 this.finished = true;
                 Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
                 Bundle extras = new Bundle();
                 extras.putInt("score", score);
-                extras.putInt("lives", lives-1);
+                extras.putInt("lives", lives - 1);
                 extras.putInt("difficulty", difficulty);
                 extras.putBoolean("survival", true);
                 intent.putExtras(extras);
                 startActivity(intent);
-            }else {
+            } else {
                 this.finished = true;
                 Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
                 Bundle extras = new Bundle();

@@ -1,12 +1,14 @@
 package com.jeu.hastequest.model.games;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.jeu.hastequest.controller.games.Quiz;
 
 public class QuizModel extends GameModel {
     public int seconds = 20;
-    private Handler handlerChrono;
+    public Handler handlerChrono;
+    public Runnable runnableChrono;
     public int currentQuestionIndex;
     public static String[] question ={
         "Léo le goat ?",
@@ -55,9 +57,10 @@ public class QuizModel extends GameModel {
         handlerChrono = new Handler();
         memory.updateTime(seconds);
         // Répète le runnable après un délai
-        Runnable runnableChrono = new Runnable() {
+        runnableChrono = new Runnable() {
             @Override
             public void run() {
+                Log.i("Quiz", "quiz handler running");
                 seconds--;
                 memory.updateTime(seconds);
                 memory.checkWin(isSurvival, score, lives, difficulty);
@@ -68,4 +71,5 @@ public class QuizModel extends GameModel {
         };
         handlerChrono.postDelayed(runnableChrono, 1000); // Démarrer le runnable avec un délai initial
     }
+
 }
