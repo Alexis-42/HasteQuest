@@ -5,7 +5,7 @@ import android.os.Handler;
 import com.jeu.hastequest.controller.games.Memory;
 
 public class MemoryModel extends GameModel{
-    public int seconds = 20;
+    public int seconds;
     private Handler handlerChrono;
     public int clickedFirst, clickedSecond;
     public int idFirst, idSecond;
@@ -13,7 +13,7 @@ public class MemoryModel extends GameModel{
     public int flippedCardNb;
     public MemoryModel() {
         super(
-                30,
+                40,
                 "Memory",
                 "Retrouve les paires de cartes dans un temps imparti",
                 2);
@@ -24,7 +24,11 @@ public class MemoryModel extends GameModel{
 
     @Override
     public int computeMaxTime(int difficulty) {
-        return 0;
+        if(difficulty > 25){
+            return 15;
+        }else{
+            return maxTime - difficulty;
+        }
     }
 
     public boolean calculate() {
@@ -32,6 +36,7 @@ public class MemoryModel extends GameModel{
     }
 
     public void init(Memory memory, boolean isSurvival, int score, int lives, int difficulty){
+        this.seconds = computeMaxTime(difficulty);
         handlerChrono = new Handler();
         memory.updateTime(seconds);
         // Répète le runnable après un délai

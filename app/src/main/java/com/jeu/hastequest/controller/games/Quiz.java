@@ -15,6 +15,7 @@ import com.jeu.hastequest.model.games.QuizModel;
 
 public class Quiz extends Game {
     public boolean finished = false;
+    public int time_init ;
     public Button anwsersButtonA;
     public Button anwsersButtonB;
     public Button anwsersButtonC;

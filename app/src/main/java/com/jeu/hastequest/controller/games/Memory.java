@@ -169,7 +169,6 @@ public class Memory extends Game{
                     intent.putExtras(extras);
                     startActivity(intent);
                 }
-
             }
         }
     }

@@ -6,7 +6,7 @@ import android.util.Log;
 import com.jeu.hastequest.controller.games.Quiz;
 
 public class QuizModel extends GameModel {
-    public int seconds = 20;
+    public int seconds;
     public Handler handlerChrono;
     public Runnable runnableChrono;
     public int currentQuestionIndex;
@@ -28,18 +28,17 @@ public class QuizModel extends GameModel {
     };
 
     public QuizModel() {
-        super(30,
+        super(15,
                 "Quizz",
                 "Trouve la réponse correcte dans un temps impartie",
                 0);
-        currentQuestionIndex = getRandomNumber(question.length );
+        currentQuestionIndex = getRandomNumber(question.length);
     }
 
     @Override
     public int computeMaxTime(int difficulty) {
-        if(difficulty > 25){
-            // TODO trouver une fonction log de difficultée
-            return 3;
+        if(difficulty > 10){
+            return 4;
         }else{
             return maxTime - difficulty;
         }
@@ -54,6 +53,7 @@ public class QuizModel extends GameModel {
     }
 
     public void init(Quiz memory, boolean isSurvival, int score, int lives, int difficulty){
+        this.seconds = computeMaxTime(difficulty);
         handlerChrono = new Handler();
         memory.updateTime(seconds);
         // Répète le runnable après un délai
