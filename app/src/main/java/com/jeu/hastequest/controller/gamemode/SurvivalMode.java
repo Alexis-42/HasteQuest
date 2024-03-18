@@ -91,6 +91,22 @@ public class SurvivalMode extends GameMode{
                     if(getGameModeModel().lives <= 0)
                         // TODO FAIRE UN POP UP POUR DIRE QUE C'EST FINI
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        /*setContentView(R.layout.scoremenu);
+                        //TextView scoreText = findViewById(R.id.score);
+                        /*bouton home
+                        ImageButton homeScoreButton = findViewById(R.id.boutonHome);
+                        homeScoreButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
+                        /*bouton réessayer
+                        this.gameModeModel = new SurvivalModeModel();
+                        Intent intentRetry = new Intent(this,  this.getGamemodeModel().selectedGame.getClass());
+                        Bundle extrasRetry = new Bundle();
+                        extrasRetry.putInt("score", 0);
+                        extrasRetry.putInt("lives", 3);
+                        extrasRetry.putInt("difficulty", 0);
+                        extrasRetry.putBoolean("survival", true);
+                        intentRetry.putExtras(extrasRetry);
+                        Button startScoreButton = findViewById(R.id.boutonJouer);
+                        startScoreButton.setOnClickListener(paramInutile -> startActivity(intentRetry));*/
                 }
             }
         }

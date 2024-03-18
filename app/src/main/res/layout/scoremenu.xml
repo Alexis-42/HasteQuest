@@ -79,30 +79,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/boutonRegles"
-        android:layout_width="0dp"
-        android:layout_height="87dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="17dp"
-        android:background="@drawable/main_menu_button"
-        android:text="@string/r_gles"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/boutonJouer"
         android:layout_width="0dp"
         android:layout_height="87dp"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/main_menu_button"
-        android:text="@string/jouer"
-        app:layout_constraintTop_toBottomOf="@+id/boutonRegles"
+        android:text="Réessayer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
