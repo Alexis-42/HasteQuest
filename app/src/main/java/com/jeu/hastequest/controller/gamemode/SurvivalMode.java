@@ -97,14 +97,7 @@ public class SurvivalMode extends GameMode{
                         ImageButton homeScoreButton = findViewById(R.id.boutonHome);
                         homeScoreButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
                         //bouton réessayer
-                        this.gameModeModel = new SurvivalModeModel();
-                        Intent intentRetry = new Intent(this,  this.getGamemodeModel().selectedGame.getClass());
-                        Bundle extrasRetry = new Bundle();
-                        extrasRetry.putInt("score", 0);
-                        extrasRetry.putInt("lives", 3);
-                        extrasRetry.putInt("difficulty", 0);
-                        extrasRetry.putBoolean("survival", true);
-                        intentRetry.putExtras(extrasRetry);
+                        Intent intentRetry =  new Intent(getApplicationContext(), SurvivalMode.class);
                         Button startScoreButton = findViewById(R.id.boutonJouer);
                         startScoreButton.setOnClickListener(paramInutile -> startActivity(intentRetry));
                 }
