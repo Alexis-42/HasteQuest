@@ -46,7 +46,7 @@ public class Memory extends Game{
         boolean isSurvival = extras.getBoolean("survival");
         int lives;
         int score;
-        int difficulty;
+        int difficulty = extras.getInt("difficulty");
 
 
         this.card1 = findViewById(R.id.carte1);
@@ -67,10 +67,8 @@ public class Memory extends Game{
         if(isSurvival){
             lives = extras.getInt("lives");
             score = extras.getInt("score");
-            difficulty = extras.getInt("difficulty");
         } else {
             lives = 0;
-            difficulty = 0;
             score = 0;
         }
 

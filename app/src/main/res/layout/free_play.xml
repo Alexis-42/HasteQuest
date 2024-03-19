@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_menu_bg">
+
+    <ImageView
+        android:id="@+id/imageJeuPrev"
+        android:layout_width="160dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="287dp"
+        android:contentDescription="@string/image_du_jeu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/imageJeu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageView
+        android:id="@+id/imageJeu"
+        android:layout_width="265dp"
+        android:layout_height="293dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="227dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="287dp"
+        android:contentDescription="@string/image_du_jeu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_launcher_background" />
+
+    <ImageButton
+        android:id="@+id/boutonDiffDown"
+        android:layout_width="36dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginBottom="580dp"
+        android:contentDescription="@string/bouton_jeu_suivant"
+        android:rotation="90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gameModeDifficulty"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/arrow_down_float" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/boutonJouer"
@@ -25,57 +71,38 @@
         android:layout_marginStart="102dp"
         android:layout_marginEnd="102dp"
         android:layout_marginBottom="627dp"
+        android:contentDescription="@string/logo_hastequest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/logo_hastequest" />
+        app:srcCompat="@drawable/logo" />
 
     <ImageView
-        android:id="@+id/imageJeu"
-        android:layout_width="265dp"
-        android:layout_height="293dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="227dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginBottom="287dp"
+        android:id="@+id/imageJeuNext"
+        android:layout_width="160dp"
+        android:layout_height="300dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="226dp"
+        android:layout_marginBottom="281dp"
         android:contentDescription="@string/image_du_jeu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageJeu"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher_background" />
 
     <ImageButton
-        android:id="@+id/boutonNextJeu"
-        android:layout_width="49dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="347dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="407dp"
+        android:id="@+id/boutonDiffUp"
+        android:layout_width="36dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="182dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="581dp"
         android:contentDescription="@string/bouton_jeu_suivant"
         android:rotation="270"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageJeu"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/arrow_down_float" />
-
-    <ImageButton
-        android:id="@+id/boutonPreviousJeu"
-        android:layout_width="49dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="347dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="407dp"
-        android:contentDescription="@string/bouton_jeu_precedent"
-        android:rotation="90"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageJeu"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameModeDifficulty"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/arrow_down_float" />
 
@@ -104,5 +131,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
+
+    <TextView
+        android:id="@+id/gameModeDifficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="581dp"
+        android:text="Difficulté : XX"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

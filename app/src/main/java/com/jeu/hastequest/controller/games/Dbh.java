@@ -24,17 +24,16 @@ public class Dbh extends Game{
         boolean isSurvival = extras.getBoolean("survival");
         int lives;
         int score;
-        int difficulty;
+        int difficulty = extras.getInt("difficulty");
 
         if(isSurvival){
             lives = extras.getInt("lives");
             score = extras.getInt("score");
-            difficulty = extras.getInt("difficulty");
         } else {
             lives = 0;
-            difficulty = 0;
             score = 0;
         }
+
 
         GameView gameView = new GameView(this,lives,difficulty,score,isSurvival);
         setContentView(gameView);

@@ -36,7 +36,7 @@ public class Quiz extends Game {
         boolean isSurvival = extras.getBoolean("survival");
         int lives;
         int score;
-        int difficulty;
+        int difficulty = extras.getInt("difficulty");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz);
@@ -51,10 +51,8 @@ public class Quiz extends Game {
         if (isSurvival) {
             lives = extras.getInt("lives");
             score = extras.getInt("score");
-            difficulty = extras.getInt("difficulty");
         } else {
             lives = 0;
-            difficulty = 0;
             score = 0;
         }
 

@@ -5,6 +5,7 @@ import com.jeu.hastequest.model.Score;
 
 public class FreePlayModeModel extends GameModeModel{
     public Game selectedGame;
+    public int difficulty;
     public FreePlayModeModel() {
         super();
         this.selectedGame = games[0];
