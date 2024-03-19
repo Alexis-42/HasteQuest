@@ -13,7 +13,6 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -27,7 +26,7 @@ import com.jeu.hastequest.controller.gamemode.SurvivalMode;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameView extends View {
+public class DbhView extends View {
     int vie, difficulty, score;
     boolean isSurvival;
     Bitmap background, ground, chara;
@@ -52,7 +51,7 @@ public class GameView extends View {
 
 
 
-    public GameView(Context context, int vie, int difficulty, int score, boolean isSurvival) {
+    public DbhView(Context context, int vie, int difficulty, int score, boolean isSurvival) {
         super(context);
         this.isSurvival = isSurvival;
         this.vie = vie;

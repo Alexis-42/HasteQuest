@@ -33,6 +33,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".controller.games.FlappyPlane"
+            android:exported="false" />
+        <activity
             android:name=".controller.games.Dbh"
             android:exported="true"
             android:screenOrientation="portrait">

@@ -6,12 +6,14 @@ import android.view.WindowManager;
 
 import com.jeu.hastequest.R;
 import com.jeu.hastequest.model.games.DbhModel;
+import com.jeu.hastequest.model.games.FlappyPlaneModel;
+import com.jeu.hastequest.model.games.GameModel;
+import com.jeu.hastequest.model.games.MemoryModel;
 
+public class FlappyPlane  extends Game{
 
-public class Dbh extends Game{
-
-    public Dbh(){
-        super(new DbhModel());
+    public FlappyPlane() {
+        super(new FlappyPlaneModel());
         setGameImage();
     }
 
@@ -34,17 +36,14 @@ public class Dbh extends Game{
             score = 0;
         }
 
-
-        DbhView dbhView = new DbhView(this,lives,difficulty,score,isSurvival);
-        setContentView(dbhView);
+        // TODO: Implement FlappyPlaneView
+        FlappyPlaneView flappyPlaneView = new FlappyPlaneView(this,lives,difficulty,score,isSurvival);
+        setContentView(flappyPlaneView);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
     @Override
-    void setGameImage(){
+    void setGameImage() {
         this.gameImage = R.drawable.game_title;
     }
-
-
 }
-
