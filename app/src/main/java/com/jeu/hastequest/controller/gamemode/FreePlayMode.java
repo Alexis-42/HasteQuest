@@ -1,5 +1,7 @@
 package com.jeu.hastequest.controller.gamemode;
 
+import static android.view.animation.AnimationUtils.loadAnimation;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -145,19 +147,21 @@ public class FreePlayMode extends GameMode{
                     // Left to Right swipe action
                     if (x2 > x1)
                     {
+                        gameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_right));
+                        nextGameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_right));
+                        prevGameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_right));
                         previousGame();
                     }
 
                     // Right to left swipe action
                     else
                     {
+                        gameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_left));
+                        nextGameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_left));
+                        prevGameImage.startAnimation(loadAnimation(getApplicationContext(),R.anim.slide_left));
                         nextGame();
                     }
 
-                }
-                else
-                {
-                    // consider as something else - a screen tap for example
                 }
                 break;
         }
