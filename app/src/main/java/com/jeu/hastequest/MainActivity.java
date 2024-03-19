@@ -1,5 +1,6 @@
 package com.jeu.hastequest;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
     public void redirectFreePlay(){
         Intent intent = new Intent(getApplicationContext(), FreePlayMode.class);
         startActivity(intent);
+    }
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
     }
 
 }

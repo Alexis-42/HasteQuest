@@ -22,6 +22,7 @@ public class Quiz extends Game {
     public Button anwsersButtonD;
     public TextView question;
     public TextView chronometer;
+    public Handler handler;
 
     public Quiz() {
         super(new QuizModel());
@@ -76,13 +77,13 @@ public class Quiz extends Game {
         this.getQuizModel().handlerChrono.removeCallbacks(this.getQuizModel().runnableChrono);
         if (isSurvival) {
             if (getQuizModel().isCorrect(stringPressed)) {
-                score += 1;
+                score += 1 + Math.floor((double)difficulty/5.0);
                 difficulty += 1;
             } else {
                 lives -= 1;
             }
 
-            Handler handler = new Handler();
+            handler = new Handler();
             int finalScore = score;
             int finalLives = lives;
             int finalDifficulty = difficulty;
@@ -135,6 +136,7 @@ public class Quiz extends Game {
 
     public void updateTime(int seconds) {
         this.chronometer.setText(String.valueOf(seconds));
+
     }
 
     public void checkWin(boolean isSurvival, int score, int lives, int difficulty) {

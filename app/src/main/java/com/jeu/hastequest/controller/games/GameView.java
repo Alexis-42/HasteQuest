@@ -151,6 +151,7 @@ public class GameView extends View {
             if(this.isSurvival){
                 Intent intent = new Intent(context, SurvivalMode.class);
                 Bundle extras = new Bundle();
+                score += 1 + Math.floor((double)difficulty/5.0);
                 extras.putInt("score", this.score);
                 extras.putInt("lives", this.vie);
                 extras.putInt("difficulty", this.difficulty+1);

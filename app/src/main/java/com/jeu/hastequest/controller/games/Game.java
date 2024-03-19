@@ -1,5 +1,6 @@
 package com.jeu.hastequest.controller.games;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,4 +22,8 @@ abstract public class Game extends AppCompatActivity {
     }
 
     abstract void setGameImage();
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+    }
 }

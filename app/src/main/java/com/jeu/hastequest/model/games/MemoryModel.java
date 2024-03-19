@@ -1,6 +1,7 @@
 package com.jeu.hastequest.model.games;
 
 import android.os.Handler;
+import android.util.Log;
 
 import com.jeu.hastequest.controller.games.Memory;
 
@@ -44,10 +45,13 @@ public class MemoryModel extends GameModel{
             @Override
             public void run() {
                 seconds--;
+                Log.i("memoriesec", "memorie handler chrono "+seconds);
                 memory.updateTime(seconds);
                 memory.checkWin(isSurvival, score, lives, difficulty);
                 if(!memory.finished){
                     handlerChrono.postDelayed(this, 1000); // Répète le runnable après un délai
+                }else{
+                    handlerChrono.removeCallbacks(this);
                 }
             }
         };

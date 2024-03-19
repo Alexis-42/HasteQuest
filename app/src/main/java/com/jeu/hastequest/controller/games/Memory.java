@@ -153,7 +153,7 @@ public class Memory extends Game{
                     Intent intent;
 
                     if (isSurvival) {
-                        score += 1;
+                        score += 1 + Math.floor((double)difficulty/5.0);
                         difficulty += 1;
                         intent = new Intent(getApplicationContext(), SurvivalMode.class);
                         extras.putInt("score", score + 1);
@@ -190,6 +190,7 @@ public class Memory extends Game{
 
     public void updateTime(int seconds) {
         this.chronometer.setText(String.valueOf(seconds));
+
     }
 
     public void checkWin(boolean isSurvival, int score, int lives, int difficulty){
@@ -198,8 +199,15 @@ public class Memory extends Game{
                 this.finished = true;
                 Intent intent = new Intent(getApplicationContext(), SurvivalMode.class);
                 Bundle extras = new Bundle();
+                if (getModel().flippedCardNb >= 12) {
+                    extras.putInt("lives", lives);
+                    difficulty += 1;
+                    score += 1 + Math.floor((double)difficulty/5.0);
+                }else{
+                    extras.putInt("lives", lives-1);
+                }
+
                 extras.putInt("score", score);
-                extras.putInt("lives", lives-1);
                 extras.putInt("difficulty", difficulty);
                 extras.putBoolean("survival", true);
                 intent.putExtras(extras);
