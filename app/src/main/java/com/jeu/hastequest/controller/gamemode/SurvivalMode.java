@@ -17,6 +17,7 @@ public class SurvivalMode extends GameMode{
     public ImageButton homeButton;
     public Button playButton;
     public Button rulesButton;
+    public TextView scoreText;
     @Override
     public void setGameModel() {
         this.gameModeModel = new SurvivalModeModel();
@@ -44,20 +45,22 @@ public class SurvivalMode extends GameMode{
         };
 
         if(extras != null){
-            getGameModeModel().currentScore.score = extras.getInt("score");
+            getGameModeModel().currentScore = extras.getInt("score");
             getGameModeModel().lives = extras.getInt("lives");
             getGameModeModel().difficulty = extras.getInt("difficulty");
             handlePlayButton();
         }else{
             setContentView(R.layout.survivalmenu);
-
             this.rulesButton = findViewById(R.id.boutonRegles);
             this.homeButton = findViewById(R.id.boutonHome);
             this.playButton = findViewById(R.id.boutonJouer);
+            this.scoreText = findViewById(R.id.scoreTextView);
 
             rulesButton.setOnClickListener(listener);
             homeButton.setOnClickListener(listener);
             playButton.setOnClickListener(listener);
+
+            getGameModeModel().gameLoadScore(this);
         }
     }
 
@@ -74,7 +77,7 @@ public class SurvivalMode extends GameMode{
         // On passe au jeu avec les paramètres du mode de jeu qui seront à repasser
         Intent intent = new Intent(this,  this.getGamemodeModel().selectedGame.getClass());
         Bundle extras = new Bundle();
-        extras.putInt("score", getGameModeModel().currentScore.score);
+        extras.putInt("score", getGameModeModel().currentScore);
         extras.putInt("lives", getGameModeModel().lives);
         extras.putInt("difficulty", getGameModeModel().difficulty);
         extras.putBoolean("survival", true);
@@ -88,22 +91,25 @@ public class SurvivalMode extends GameMode{
                 heartImage2.setVisibility(View.INVISIBLE);
                 if(getGameModeModel().lives < 1) {
                     heartImage1.setVisibility(View.INVISIBLE);
-                    if(getGameModeModel().lives <= 0)
-                        // TODO FAIRE UN POP UP POUR DIRE QUE C'EST FINI
+                    if(getGameModeModel().lives <= 0) {
                         //startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         setContentView(R.layout.scoremenu);
-                        //TextView scoreText = findViewById(R.id.score);
+                        if(getGamemodeModel().currentScore > 0)
+                            getGamemodeModel().gameSaveScore(this, getGamemodeModel().currentScore);
+                        TextView scoreText = findViewById(R.id.scoreText);
+                        scoreText.setText("Votre score : " + this.getGamemodeModel().currentScore);
                         //bouton home
                         ImageButton homeScoreButton = findViewById(R.id.boutonHome);
                         homeScoreButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
                         //bouton réessayer
-                        Intent intentRetry =  new Intent(getApplicationContext(), SurvivalMode.class);
+                        Intent intentRetry = new Intent(getApplicationContext(), SurvivalMode.class);
                         Button startScoreButton = findViewById(R.id.boutonJouer);
                         startScoreButton.setOnClickListener(paramInutile -> startActivity(intentRetry));
+                    }
                 }
             }
         }
-        score.setText(String.format("Score actuel : " + this.getGamemodeModel().currentScore.score));
+        score.setText(String.format("Score actuel : " + this.getGamemodeModel().currentScore));
         homeButton.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), MainActivity.class)));
     }
 
@@ -124,6 +130,15 @@ public class SurvivalMode extends GameMode{
     public View.OnClickListener jouer(){
 
         return null;
+    }
+    public void updateScoreText(){
+        String scoreText = "";
+        int i = 1;
+        for(int score : getGameModeModel().scores){
+            scoreText = scoreText.concat("#"+ i + ":\t\t\t " + score + "pts\n");
+            i++;
+        }
+        this.scoreText.setText(scoreText);
     }
 
     public SurvivalModeModel getGameModeModel(){

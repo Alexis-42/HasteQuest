@@ -44,16 +44,16 @@
             android:background="@drawable/main_menu_bg">
 
 
-
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="6dp"
-                android:layout_weight="0.5"
                 android:layout_gravity="center"
+                android:layout_weight="0.5"
                 android:src="@drawable/podium" />
 
             <TextView
                 android:layout_width="match_parent"
+                android:id="@+id/scoreText"
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:layout_gravity="center"

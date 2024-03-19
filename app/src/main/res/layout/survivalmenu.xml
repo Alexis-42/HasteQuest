@@ -53,15 +53,17 @@
                 android:src="@drawable/podium" />
 
             <TextView
+                android:id="@+id/scoreTextView"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_weight="1"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
                 android:text="Voici votre score :"
                 android:textColor="#000000"
-                android:textSize="20sp"
                 android:textScaleX="0.8"
-                />
+                android:textSize="24sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
