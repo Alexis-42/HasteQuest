@@ -50,7 +50,7 @@ public class DbhView extends View {
     private Handler handlerChrono;
     private Runnable runnableChrono;
     public boolean isFinished = true;
-
+    boolean gameSate = false;
 
 
     public DbhView(Context context, int vie, int difficulty, int score, boolean isSurvival) {
@@ -91,50 +91,52 @@ public class DbhView extends View {
 
 
     @Override
-    protected void onDraw(Canvas canvas){
+    protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawBitmap(background,null,rectBackground,null);
-        canvas.drawBitmap(ground,null,rectGround,null);
-        canvas.drawBitmap(chara,charX,charY,null);
-        for(int i=0;i<spikes.size();i++){
-            canvas.drawBitmap(spikes.get(i).getSpike(spikes.get(i).spikeFrame),spikes.get(i).spikeX,spikes.get(i).spikeY,null);
-            spikes.get(i).spikeFrame ++;
-            if(spikes.get(i).spikeFrame>2){
-                spikes.get(i).spikeFrame = 0;
+        canvas.drawBitmap(background, null, rectBackground, null);
+        canvas.drawBitmap(ground, null, rectGround, null);
+        canvas.drawBitmap(chara, charX, charY, null);
+
+        if (gameSate){
+            for (int i = 0; i < spikes.size(); i++) {
+                canvas.drawBitmap(spikes.get(i).getSpike(spikes.get(i).spikeFrame), spikes.get(i).spikeX, spikes.get(i).spikeY, null);
+                spikes.get(i).spikeFrame++;
+                if (spikes.get(i).spikeFrame > 2) {
+                    spikes.get(i).spikeFrame = 0;
+                }
+                spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
+                if (spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()) {
+                    Explosion explosion = new Explosion(context);
+                    explosion.explosionX = spikes.get(i).spikeX;
+                    explosion.explosionY = spikes.get(i).spikeY;
+                    explosions.add(explosion);
+                    spikes.get(i).resetPosition();
+                    spikes.get(i).spikeVelocity += 2 * this.difficulty;
+                }
             }
-            spikes.get(i).spikeY += spikes.get(i).spikeVelocity;
-            if(spikes.get(i).spikeY + spikes.get(i).getSpikeHeight() >= dHeight - ground.getHeight()){
-                Explosion explosion = new Explosion(context);
-                explosion.explosionX = spikes.get(i).spikeX;
-                explosion.explosionY = spikes.get(i).spikeY;
-                explosions.add(explosion);
-                spikes.get(i).resetPosition();
-                spikes.get(i).spikeVelocity+=2*this.difficulty;
-            }
-        }
-        for(int i=0; i<spikes.size();i++){
-            if(spikes.get(i).spikeX + spikes.get(i).getSpikeWidth() >= charX
+        for (int i = 0; i < spikes.size(); i++) {
+            if (spikes.get(i).spikeX + spikes.get(i).getSpikeWidth() >= charX
                     && spikes.get(i).spikeX <= charX + chara.getWidth()
                     && spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() >= charY
-                    &&spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() <= charY + chara.getHeight()){
+                    && spikes.get(i).spikeY + spikes.get(i).getSpikeWidth() <= charY + chara.getHeight()) {
                 life--;
                 spikes.get(i).resetPosition();
-                spikes.get(i).spikeVelocity+=2*this.difficulty;
-                if(life == 0 && isFinished){
+                spikes.get(i).spikeVelocity += 2 * this.difficulty;
+                if (life == 0 && isFinished) {
                     isFinished = false;
-                    if(this.isSurvival){
+                    if (this.isSurvival) {
                         Intent intent = new Intent(context, SurvivalMode.class);
                         Bundle extras = new Bundle();
-                        Log.i("diffL","difficultéL : "+(this.difficulty));
-                        Log.i("newscoreL","score : "+(this.score));
+                        Log.i("diffL", "difficultéL : " + (this.difficulty));
+                        Log.i("newscoreL", "score : " + (this.score));
                         extras.putInt("score", this.score);
-                        extras.putInt("lives", this.vie-1);
+                        extras.putInt("lives", this.vie - 1);
                         extras.putInt("difficulty", this.difficulty);
                         extras.putBoolean("survival", true);
                         intent.putExtras(extras);
                         context.startActivity(intent);
                         ((Activity) context).finish();
-                    }else {
+                    } else {
                         Intent intent = new Intent(context, FreePlayMode.class);
                         Bundle extras = new Bundle();
                         extras.putBoolean("survival", false);
@@ -145,29 +147,29 @@ public class DbhView extends View {
                 }
             }
         }
-        for(int i=0; i<explosions.size();i++){
-            canvas.drawBitmap(explosions.get(i).getExplosion(explosions.get(i).explosionFrame),explosions.get(i).explosionX,explosions.get(i).explosionY,null);
+        for (int i = 0; i < explosions.size(); i++) {
+            canvas.drawBitmap(explosions.get(i).getExplosion(explosions.get(i).explosionFrame), explosions.get(i).explosionX, explosions.get(i).explosionY, null);
             explosions.get(i).explosionFrame++;
-            if(explosions.get(i).explosionFrame>3){
+            if (explosions.get(i).explosionFrame > 3) {
                 explosions.remove(i);
             }
         }
-        if(seconds<=0 && isFinished){
+        if (seconds <= 0 && isFinished) {
             isFinished = false;
-            if(this.isSurvival){
+            if (this.isSurvival) {
                 Intent intent = new Intent(context, SurvivalMode.class);
                 Bundle extras = new Bundle();
                 //Log.i("diff","difficulté : "+(this.difficulty));
                 //Log.i("newscore","score : "+(this.score));
                 //Log.i("score+",""+(1 + Math.floor((double)difficulty/5.0)));
-                extras.putInt("score", ((int)(this.score + 1 + Math.floor((double)difficulty/5.0))));
+                extras.putInt("score", ((int) (this.score + 1 + Math.floor((double) difficulty / 5.0))));
                 extras.putInt("lives", this.vie);
-                extras.putInt("difficulty", this.difficulty+1);
+                extras.putInt("difficulty", this.difficulty + 1);
                 extras.putBoolean("survival", true);
                 intent.putExtras(extras);
                 context.startActivity(intent);
                 ((Activity) context).finish();
-            }else {
+            } else {
                 Intent intent = new Intent(context, FreePlayMode.class);
                 Bundle extras = new Bundle();
                 extras.putBoolean("survival", false);
@@ -176,6 +178,7 @@ public class DbhView extends View {
                 ((Activity) context).finish();
             }
         }
+    }
         canvas.drawText("" + seconds, 20, TEXT_SIZE, textPaint);
         handler.postDelayed(runnable,UPDATE_MILLIS);
     }
@@ -183,6 +186,7 @@ public class DbhView extends View {
     public boolean onTouchEvent(MotionEvent event){
         float touchX = event.getX();
         float touchY = event.getY();
+        gameSate = true;
         if(touchY >= charY){
             int action = event.getAction();
             if(action==MotionEvent.ACTION_DOWN){
@@ -210,9 +214,11 @@ public class DbhView extends View {
         runnableChrono = new Runnable() {
             @Override
             public void run() {
-                seconds--;
-                //Log.i("seconds", seconds+"s");
-                handlerChrono.postDelayed(this, 1000); // Répète le runnable après un délai
+                if(gameSate){
+                    seconds--;
+                    //Log.i("seconds", seconds+"s");
+                }
+                 handlerChrono.postDelayed(this, 1000); // Répète le runnable après un délai
             }
         };
         handlerChrono.postDelayed(runnableChrono, 1000); // Démarrer le runnable avec un délai initial
