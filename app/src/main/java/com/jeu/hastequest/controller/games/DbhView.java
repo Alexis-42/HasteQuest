@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -48,6 +49,7 @@ public class DbhView extends View {
     ArrayList<Explosion>explosions;
     private Handler handlerChrono;
     private Runnable runnableChrono;
+    public boolean isFinished = true;
 
 
 
@@ -58,6 +60,7 @@ public class DbhView extends View {
         this.difficulty = difficulty;
         this.score = score;
         this.context = context;
+        isFinished = true;
         background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
         ground = BitmapFactory.decodeResource(getResources(), R.drawable.ground);
         chara = BitmapFactory.decodeResource(getResources(), R.drawable.chara);
@@ -117,13 +120,16 @@ public class DbhView extends View {
                 life--;
                 spikes.get(i).resetPosition();
                 spikes.get(i).spikeVelocity+=2*this.difficulty;
-                if(life == 0){
+                if(life == 0 && isFinished){
+                    isFinished = false;
                     if(this.isSurvival){
                         Intent intent = new Intent(context, SurvivalMode.class);
                         Bundle extras = new Bundle();
+                        Log.i("diffL","difficultéL : "+(this.difficulty));
+                        Log.i("newscoreL","score : "+(this.score));
                         extras.putInt("score", this.score);
                         extras.putInt("lives", this.vie-1);
-                        extras.putInt("difficulty", this.difficulty+1);
+                        extras.putInt("difficulty", this.difficulty);
                         extras.putBoolean("survival", true);
                         intent.putExtras(extras);
                         context.startActivity(intent);
@@ -133,7 +139,7 @@ public class DbhView extends View {
                         Bundle extras = new Bundle();
                         extras.putBoolean("survival", false);
                         intent.putExtras(extras);
-                        context.startActivity(intent);
+                        //context.startActivity(intent);
                         ((Activity) context).finish();
                     }
                 }
@@ -146,12 +152,15 @@ public class DbhView extends View {
                 explosions.remove(i);
             }
         }
-        if(seconds<=0){
+        if(seconds<=0 && isFinished){
+            isFinished = false;
             if(this.isSurvival){
                 Intent intent = new Intent(context, SurvivalMode.class);
                 Bundle extras = new Bundle();
-                score += 1 + Math.floor((double)difficulty/5.0);
-                extras.putInt("score", this.score);
+                //Log.i("diff","difficulté : "+(this.difficulty));
+                //Log.i("newscore","score : "+(this.score));
+                //Log.i("score+",""+(1 + Math.floor((double)difficulty/5.0)));
+                extras.putInt("score", ((int)(this.score + 1 + Math.floor((double)difficulty/5.0))));
                 extras.putInt("lives", this.vie);
                 extras.putInt("difficulty", this.difficulty+1);
                 extras.putBoolean("survival", true);
@@ -163,7 +172,7 @@ public class DbhView extends View {
                 Bundle extras = new Bundle();
                 extras.putBoolean("survival", false);
                 intent.putExtras(extras);
-                context.startActivity(intent);
+                //context.startActivity(intent);
                 ((Activity) context).finish();
             }
         }
@@ -214,39 +223,6 @@ public class DbhView extends View {
         super.onDetachedFromWindow();
         handler.removeCallbacks(runnable); // Arrêter le runnable lorsque la vue est détachée de la fenêtre
         handlerChrono.removeCallbacks(runnableChrono);
-    }
-
-    // Vue personnalisée pour dessiner le chronomètre
-    private class ChronometerView extends View {
-
-        private Paint textPaint;
-
-        public ChronometerView(Context context) {
-            super(context);
-            init();
-        }
-
-        public ChronometerView(Context context, @Nullable AttributeSet attrs) {
-            super(context, attrs);
-            init();
-        }
-
-        public ChronometerView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
-            init();
-        }
-
-        private void init() {
-            textPaint = new Paint();
-            textPaint.setColor(Color.BLACK);
-            textPaint.setTextSize(TEXT_SIZE);
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            canvas.drawText("" + seconds, 20, TEXT_SIZE, textPaint);
-        }
     }
 
 }

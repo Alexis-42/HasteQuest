@@ -59,7 +59,8 @@ public class FlappyPlaneView extends View {
     int distanceBetweenTubes;
     int[] tubeX = new int[numberOfTubes];
     int[] topTubeY = new int[numberOfTubes];
-    int tubeVelocity = 16;
+    int tubeVelocity = 8;
+    public boolean isFinished = true;
 
 
     public FlappyPlaneView(Context context, int lives, int difficulty, int score, boolean isSurvival) {
@@ -69,6 +70,9 @@ public class FlappyPlaneView extends View {
         this.difficulty = difficulty;
         this.score = score;
         this.context = context;
+        isFinished=true;
+
+        tubeVelocity = 8 + 2*this.difficulty;
 
         handler = new Handler();
         runnable = new Runnable() {
@@ -135,13 +139,16 @@ public class FlappyPlaneView extends View {
 
                 if (((birdX + birds[0].getWidth() > tubeX[i] && birdX < tubeX[i] + toptube.getWidth())
                         || (birdX > tubeX[i] && birdX + birds[0].getWidth() < tubeX[i] + toptube.getWidth()))){
-                    if (birdY < topTubeY[i] || birdY + birds[0].getHeight() > topTubeY[i] + gap){
+                    if (birdY < topTubeY[i] || birdY + birds[0].getHeight() > topTubeY[i] + gap
+                    && isFinished){
+                        isFinished = false;
                         if(this.isSurvival){
                             Intent intent = new Intent(context, SurvivalMode.class);
                             Bundle extras = new Bundle();
+                            //Log.i("newscoreL","score : "+(this.score));
                             extras.putInt("score", this.score);
                             extras.putInt("lives", this.vie-1);
-                            extras.putInt("difficulty", this.difficulty+1);
+                            extras.putInt("difficulty", this.difficulty);
                             extras.putBoolean("survival", true);
                             intent.putExtras(extras);
                             context.startActivity(intent);
@@ -151,19 +158,20 @@ public class FlappyPlaneView extends View {
                             Bundle extras = new Bundle();
                             extras.putBoolean("survival", false);
                             intent.putExtras(extras);
-                            context.startActivity(intent);
                             ((Activity) context).finish();
                         }
                     }
                 }
             }
         }
-        if(seconds<=0){
+        if(seconds<=0 && isFinished){
+            isFinished = false;
             if(this.isSurvival){
                 Intent intent = new Intent(context, SurvivalMode.class);
                 Bundle extras = new Bundle();
-                score += 1 + Math.floor((double)difficulty/5.0);
-                extras.putInt("score", this.score);
+                //Log.i("score+",""+(1 + Math.floor((double)difficulty/5.0)));
+                //Log.i("newscore","score : "+(this.score));
+                extras.putInt("score", ((int)(this.score + 1 + Math.floor((double)difficulty/5.0))));
                 extras.putInt("lives", this.vie);
                 extras.putInt("difficulty", this.difficulty+1);
                 extras.putBoolean("survival", true);
@@ -175,7 +183,6 @@ public class FlappyPlaneView extends View {
                 Bundle extras = new Bundle();
                 extras.putBoolean("survival", false);
                 intent.putExtras(extras);
-                context.startActivity(intent);
                 ((Activity) context).finish();
             }
         }
