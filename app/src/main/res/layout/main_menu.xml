@@ -11,14 +11,14 @@
         android:layout_height="88dp"
         android:layout_marginStart="85dp"
         android:layout_marginTop="74dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="129dp"
         android:background="@drawable/main_menu_button"
         android:text="@string/jeu_libre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/boutonSurvie"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintHorizontal_bias="0.905"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/boutonSurvie"
@@ -26,25 +26,24 @@
         android:layout_height="88dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="74dp"
-        android:layout_marginEnd="239dp"
-        android:layout_marginBottom="129dp"
         android:background="@drawable/main_menu_button"
         android:text="@string/survie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="291dp"
+        android:contentDescription="@string/logo_hastequest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        android:contentDescription="@string/logo_hastequest" />
+        app:layout_constraintVertical_bias="0.053"
+        app:srcCompat="@drawable/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

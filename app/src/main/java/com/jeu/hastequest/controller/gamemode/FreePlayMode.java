@@ -100,7 +100,12 @@ public class FreePlayMode extends GameMode{
         setContentView(R.layout.rules_menu);
         @SuppressLint("CutPasteId") Button playBut = findViewById(R.id.boutonJouer);
         ImageButton closeRulesBut = findViewById(R.id.fermerRegles);
-        playBut.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), jeu.getClass())));
+        Intent intentJouer = new Intent(getApplicationContext(), jeu.getClass());
+        Bundle extras = new Bundle();
+        extras.putInt("difficulty", getGameModeModel().difficulty);
+        extras.putBoolean("survival", false);
+        intentJouer.putExtras(extras);
+        playBut.setOnClickListener(paramInutile -> startActivity(intentJouer));
         closeRulesBut.setOnClickListener(paramInutile -> startActivity(new Intent(getApplicationContext(), FreePlayMode.class)));
         TextView rules = findViewById(R.id.regles);
         rules.setText(getGameModeModel().selectedGame.gameModel.rules);
