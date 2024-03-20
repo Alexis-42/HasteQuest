@@ -44,6 +44,6 @@ public class FlappyPlane  extends Game{
 
     @Override
     void setGameImage() {
-        this.gameImage = R.drawable.game_title;
+        this.gameImage = R.drawable.flappyplanelogo;
     }
 }

@@ -81,7 +81,7 @@ public class FlappyPlaneView extends View {
                 invalidate();
             }
         };
-        background = BitmapFactory.decodeResource(getResources(), R.drawable.background);
+        background = BitmapFactory.decodeResource(getResources(), R.drawable.backgroundcity);
         toptube = BitmapFactory.decodeResource(getResources(), R.drawable.toptube);
         bottomtube = BitmapFactory.decodeResource(getResources(), R.drawable.bottomtube);
         display = ((Activity)getContext()).getWindowManager().getDefaultDisplay();
